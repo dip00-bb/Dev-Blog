@@ -5,6 +5,9 @@ import { Component } from "lucide-react";
 import Home from "../Pages/Home";
 import Register from "../Pages/Register";
 import Login from "../Pages/Login";
+import AddBlog from "../Pages/AddBlog";
+import PrivateRoute from "../PrivateRoute.jsx/PrivateRoute";
+import WishList from "../Pages/WishList";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +25,14 @@ export const router = createBrowserRouter([
             {
                 path: 'login',
                 Component: Login
+            },
+            {
+                path: 'addblog',
+                element:<PrivateRoute><AddBlog></AddBlog></PrivateRoute>
+            },
+            {
+                path:'wishlist',
+                element:<WishList></WishList>
             }
         ]
     },

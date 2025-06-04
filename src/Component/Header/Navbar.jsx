@@ -1,8 +1,25 @@
 import { Link, NavLink } from 'react-router';
-import React from 'react';
+import React, { use } from 'react';
+import { AuthContext } from '../../AuthContext/AuthContext';
+import { toast } from 'react-toastify';
+
+
 
 const Navbar = () => {
 
+
+  const handleLogOut=()=>{
+    signout().then(() => {
+            toast("Log out successful")
+        }).catch(error => {
+            toast.warn(error.message)
+        })
+  }
+
+
+
+
+  const { user,signout } = use(AuthContext)
   const links = <><li><NavLink className='text-xl' to='/'>Home</NavLink></li>
     <li><NavLink className='text-xl' to='/addblog'>Add Blog</NavLink></li>
     <li><NavLink className='text-xl' to='/allblog'>All Blog</NavLink></li>
@@ -34,8 +51,25 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end space-x-3">
-        <Link to='/register' className="btn hover:btn-primary">Register</Link>
-        <Link to='/login' className="btn hover:btn-primary">Login</Link>
+        {
+          !user ?
+
+            <div className='space-x-3'>
+              <Link to='/register' className="btn hover:btn-primary">Register</Link>
+              <Link to='/login' className="btn hover:btn-primary">Login</Link>
+            </div>
+            :
+            <div className='space-x-3'>
+              <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full relative">
+                  <img
+                    alt='not provide'
+                    src={user.photoURL} />
+                </div>
+              </div>
+              <button onClick={handleLogOut} className="btn hover:btn-primary">Logout</button>
+            </div>
+        }
       </div>
     </div>
   );

@@ -8,10 +8,12 @@ import { toast } from "react-toastify";
 export default function Register() {
 
   const navigate = useNavigate();
-  const { googleLogin } = use(AuthContext);
+  const { googleLogin ,setUser} = use(AuthContext);
 
   const handleGoogleLogIn = () => {
-    googleLogin().then(() => {
+    googleLogin().then((result) => {
+      setUser(result.user)
+      console.log(result.user)
       toast("Registration Successful")
       navigate('/')
     }).catch(error => {

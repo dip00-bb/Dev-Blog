@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 export default function Register() {
 
   const navigate = useNavigate();
-  const { googleLogin ,setUser} = use(AuthContext);
+  const { googleLogin, setUser,registerUser,updateUser } = use(AuthContext);
 
   const handleGoogleLogIn = () => {
     googleLogin().then((result) => {
@@ -22,38 +22,65 @@ export default function Register() {
   }
 
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const handleSignUpUser = (e) => {
+    e.preventDefault()
+    const target = e.target;
+    const userName = target.name.value;
+    const userEmail = target.email.value;
+    const userPhotoURL = target.photoUrl.value;
+    const password = target.password.value;
+
+    registerUser(userEmail, password).
+      then(result => {
+        const user = result.user
+
+        updateUser(userName, userPhotoURL).then(() => {
+
+          setUser({ ...user, displayName: userName, photoURL: userPhotoURL });
+          toast("Registration Successful");
+          navigate('/')
+
+        }).catch(error => {
+          setUser(user)
+          toast.warn(error.message);
+        })
+      }).catch(error => {
+        toast.warn(error.message);
+      })
+
+  }
+
+  // const [password, setPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
+  // const [errors, setErrors] = useState([]);
 
 
 
-  const validatePassword = (pass) => {
-    const errorList = [];
+  // const validatePassword = (pass) => {
+  //   const errorList = [];
 
-    if (pass.length < 6) errorList.push("Password must be at least 6 characters.");
-    if (!/[A-Z]/.test(pass)) errorList.push("Password must include a capital letter.");
-    if (!/[!@#$%^&*(),.?\":{}|<>]/.test(pass)) errorList.push("Password must include a special character.");
-    if (!/\d/.test(pass)) errorList.push("Password must include a number.");
+  //   if (pass.length < 6) errorList.push("Password must be at least 6 characters.");
+  //   if (!/[A-Z]/.test(pass)) errorList.push("Password must include a capital letter.");
+  //   if (!/[!@#$%^&*(),.?\":{}|<>]/.test(pass)) errorList.push("Password must include a special character.");
+  //   if (!/\d/.test(pass)) errorList.push("Password must include a number.");
 
-    return errorList;
-  };
+  //   return errorList;
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const passwordErrors = validatePassword(password);
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const passwordErrors = validatePassword(password);
 
-    if (password !== confirmPassword) {
-      passwordErrors.push("Passwords do not match.");
-    }
+  //   if (password !== confirmPassword) {
+  //     passwordErrors.push("Passwords do not match.");
+  //   }
 
-    setErrors(passwordErrors);
+  //   setErrors(passwordErrors);
 
-    if (passwordErrors.length === 0) {
-      console.log("Registering user:", { email, password });
-    }
-  };
+  //   if (passwordErrors.length === 0) {
+  //     handleSignUpUser()
+  //   }
+  // };
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
@@ -63,7 +90,7 @@ export default function Register() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="flex flex-col-reverse md:flex-row max-w-6xl w-full rounded-lg overflow-hidden items-center"
       >
-        {/* Left Side */}
+
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
@@ -81,19 +108,30 @@ export default function Register() {
           </p>
         </motion.div>
 
-        {/* Right Side - Form */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
           className="md:w-1/2 p-8"
         >
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSignUpUser} className="space-y-4">
+            <input
+              type="text"
+              placeholder="Name"
+              name="name"
+              className="w-full px-4 py-3 rounded-lg border bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+            />
+            <input
+              type="url"
+              placeholder="Photo url"
+              name="photoUrl"
+              className="w-full px-4 py-3 rounded-lg border bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
             <input
               type="email"
               placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
               className="w-full px-4 py-3 rounded-lg border bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
@@ -101,28 +139,10 @@ export default function Register() {
             <input
               type="password"
               placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
               className="w-full px-4 py-3 rounded-lg border bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
-
-            <input
-              type="password"
-              placeholder="Confirm password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              required
-            />
-
-            {errors.length > 0 && (
-              <div className="bg-red-100 text-red-700 px-4 py-2 rounded-lg text-sm space-y-1">
-                {errors.map((err, idx) => (
-                  <p key={idx}>• {err}</p>
-                ))}
-              </div>
-            )}
 
             <button
               type="submit"

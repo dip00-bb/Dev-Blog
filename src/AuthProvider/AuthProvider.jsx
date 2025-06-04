@@ -20,6 +20,23 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
+    // create user with email and password
+
+    const registerUser = (email, password) => {
+        setLoading(true)
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+
+    // update user
+    const updateUser = (name, url) => {
+        return updateProfile(auth.currentUser, { displayName: name, photoURL: url });
+    }
+
+
+
+
+
+
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
@@ -36,6 +53,8 @@ const AuthProvider = ({ children }) => {
         googleLogin,
         setUser,
         signout,
+        registerUser,
+        updateUser,
         user,
         isLoading,
     }

@@ -1,9 +1,10 @@
-import { use, useState } from "react";
+
 import { Link, useNavigate } from "react-router";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
+import { use } from "react";
 
 export default function Register() {
 
@@ -154,9 +155,6 @@ export default function Register() {
             <div className="relative mt-4 text-center">
               <span className="text-gray-400 text-sm">Or Sign up with</span>
               <div className="mt-2 flex justify-center space-x-4">
-                <button type="button" className="bg-white p-3 rounded-lg shadow hover:shadow-md transition">
-                  <FaGithub className="text-blue-600" />
-                </button>
                 <button onClick={handleGoogleLogIn} type="button" className="bg-white p-3 rounded-lg shadow hover:shadow-md transition">
                   <FaGoogle className="text-red-500" />
                 </button>

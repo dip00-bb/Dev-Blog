@@ -1,16 +1,43 @@
-import { useState } from "react";
-import { Link } from "react-router";
+
+import { Link, useLocation, useNavigate } from "react-router";
 import { FaFacebookF, FaApple, FaGoogle } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { use } from "react";
+import { toast } from "react-toastify";
+import { AuthContext } from "../AuthContext/AuthContext";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    console.log("Logging in:", { email, password });
-  };
+  const {googleLogin,setUser,userLogIn}=use(AuthContext);
+
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleUserLogin = (e) => {
+        e.preventDefault()
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        userLogIn(email, password)
+            .then(result => {
+                setUser(result.user);
+                toast.success("Log in successful");
+                navigate(`${location.state ? location.state : '/'}`)
+            }).catch(error => toast.error(error.message))
+    }
+
+
+    const handleSignInWithGoogle = () => {
+        googleLogin()
+            .then(result => {
+                setUser(result.user);
+                navigate(`${location.state ? location.state : '/'}`)
+                toast.success("Login Successful")
+
+            })
+            .catch(error => toast.warn(error.message))
+    }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white px-4">
@@ -45,21 +72,19 @@ export default function Login() {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="md:w-1/2 p-8"
         >
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleUserLogin} className="space-y-4">
             <input
               type="email"
+              name="email"
               placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 rounded-lg border bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
 
             <input
               type="password"
+              name="password"
               placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 rounded-lg border bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
@@ -72,21 +97,15 @@ export default function Login() {
             </button>
 
             <div className="text-sm text-right">
-              <Link to="/forgot-password" className="text-blue-600 underline">
+              <p className="text-blue-600 underline">
                 Forgot password?
-              </Link>
+              </p>
             </div>
 
             <div className="relative mt-4 text-center">
               <span className="text-gray-400 text-sm">Or Sign in with</span>
               <div className="mt-2 flex justify-center space-x-4">
-                <button type="button" className="bg-white p-3 rounded-lg shadow hover:shadow-md transition">
-                  <FaFacebookF className="text-blue-600" />
-                </button>
-                <button type="button" className="bg-white p-3 rounded-lg shadow hover:shadow-md transition">
-                  <FaApple className="text-black" />
-                </button>
-                <button type="button" className="bg-white p-3 rounded-lg shadow hover:shadow-md transition">
+                <button onClick={handleSignInWithGoogle} type="button" className="bg-white p-3 rounded-lg shadow hover:shadow-md transition">
                   <FaGoogle className="text-red-500" />
                 </button>
               </div>

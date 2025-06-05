@@ -4,12 +4,13 @@ import { FaGoogle, FaGithub } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
-import { use } from "react";
+import { use, useState } from "react";
+import { p } from "motion/react-client";
 
 export default function Register() {
 
   const navigate = useNavigate();
-  const { googleLogin, setUser,registerUser,updateUser } = use(AuthContext);
+  const { googleLogin, setUser, registerUser, updateUser } = use(AuthContext);
 
   const handleGoogleLogIn = () => {
     googleLogin().then((result) => {
@@ -23,6 +24,39 @@ export default function Register() {
   }
 
 
+  const [passwordError, setError] = useState('')
+
+
+  const handleError = (password) => {
+    setError('');
+    const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    const uppercaseRegex = /[A-Z]/;
+    const numberRegex = /[0-9]/;
+
+    if (password.length < 6) {
+      setError('Password must have at least 6 characters');
+      return true;
+    }
+
+    if (!uppercaseRegex.test(password)) {
+      setError('Password must have at least one uppercase letter');
+      return true;
+    }
+
+    if (!numberRegex.test(password)) {
+      setError('Password must have at least one number');
+      return true;
+    }
+
+    if (!specialCharRegex.test(password)) {
+      setError('Password must have at least one special character');
+      return true;
+    }
+
+    return false; 
+  };
+
+
   const handleSignUpUser = (e) => {
     e.preventDefault()
     const target = e.target;
@@ -31,6 +65,11 @@ export default function Register() {
     const userPhotoURL = target.photoUrl.value;
     const password = target.password.value;
 
+    const isError = handleError(password)
+
+    if (isError) {
+      return
+    }
     registerUser(userEmail, password).
       then(result => {
         const user = result.user
@@ -51,37 +90,7 @@ export default function Register() {
 
   }
 
-  // const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
-  // const [errors, setErrors] = useState([]);
 
-
-
-  // const validatePassword = (pass) => {
-  //   const errorList = [];
-
-  //   if (pass.length < 6) errorList.push("Password must be at least 6 characters.");
-  //   if (!/[A-Z]/.test(pass)) errorList.push("Password must include a capital letter.");
-  //   if (!/[!@#$%^&*(),.?\":{}|<>]/.test(pass)) errorList.push("Password must include a special character.");
-  //   if (!/\d/.test(pass)) errorList.push("Password must include a number.");
-
-  //   return errorList;
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const passwordErrors = validatePassword(password);
-
-  //   if (password !== confirmPassword) {
-  //     passwordErrors.push("Passwords do not match.");
-  //   }
-
-  //   setErrors(passwordErrors);
-
-  //   if (passwordErrors.length === 0) {
-  //     handleSignUpUser()
-  //   }
-  // };
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
@@ -147,7 +156,7 @@ export default function Register() {
 
             <button
               type="submit"
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition duration-200"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition duration-200 cursor-pointer"
             >
               Sign up
             </button>
@@ -160,6 +169,9 @@ export default function Register() {
                 </button>
               </div>
             </div>
+            {
+              passwordError && <p className="text-red-600 text-center">{passwordError}</p>
+            }
           </form>
         </motion.div>
       </motion.div>

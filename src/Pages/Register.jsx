@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
 import { use, useState } from "react";
-import { p } from "motion/react-client";
 
 export default function Register() {
 

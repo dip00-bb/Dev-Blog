@@ -8,6 +8,7 @@ import Login from "../Pages/Login";
 import AddBlog from "../Pages/AddBlog";
 import PrivateRoute from "../PrivateRoute.jsx/PrivateRoute";
 import WishList from "../Pages/WishList";
+import AllBlog from "../Pages/AllBlog/AllBlog";
 
 export const router = createBrowserRouter([
     {
@@ -33,6 +34,11 @@ export const router = createBrowserRouter([
             {
                 path:'wishlist',
                 element:<PrivateRoute><WishList></WishList></PrivateRoute>
+            },
+            {
+                path:'allblog',
+                Component:AllBlog,
+                loader:()=>fetch('')
             }
         ]
     },

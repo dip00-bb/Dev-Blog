@@ -3,6 +3,7 @@ import { FaArrowDown, FaSearch } from 'react-icons/fa';
 import { useLoaderData } from 'react-router';
 import BlogCard from './BlogCard';
 import axios from 'axios';
+import NotMatch from '../../Component/NotMatch/NotMatch';
 
 
 const AllBlog = () => {
@@ -10,7 +11,8 @@ const AllBlog = () => {
 
     const [category, setCategory] = useState('All');
     const [blogData, setBlogData] = useState([]);
-    const [notMatch,setNotMatch]=useState(false)
+    const [notMatch, setNotMatch] = useState(false);
+    const [searchPattern, setPattern] = useState('')
 
     useEffect(() => {
         if (category === 'All') {
@@ -22,22 +24,26 @@ const AllBlog = () => {
     }, [category, data])
 
 
-    const handleSearchBlog= async (e)=>{
+    const handleSearchBlog = async (e) => {
         e.preventDefault();
         const pattern = e.target.value;
-        if(pattern.length===0){
+        setPattern(pattern)
+        if (pattern.length === 0) {
+            setNotMatch(false)
             setBlogData(data);
             return
         }
-        const response=await axios.get(`http://localhost:3000/search/${pattern}`);
-        const resData=response.data;
-        if(resData.length===0){
+        const response = await axios.get(`http://localhost:3000/search/${pattern}`);
+        const resData = response.data;
+        if (resData.length === 0) {
             setNotMatch(true)
             console.log("not mach")
+        } else {
+            setNotMatch(false)
+            setBlogData(resData)
         }
-        setNotMatch(false)
-        setBlogData(resData)
-        
+
+
     }
 
 
@@ -63,11 +69,13 @@ const AllBlog = () => {
                 <div className='py-1.5 border px-2 flex items-center '>
                     <input onChange={handleSearchBlog} type="text" className='border-amber-400 outline-0' placeholder='search' />
 
-                    <FaSearch onClick={() => console.log("clicked")} size={15} className='cursor-pointer'/>
+                    <FaSearch onClick={() => console.log("clicked")} size={15} className='cursor-pointer' />
 
                 </div>
             </div>
-                
+            {
+                notMatch && <NotMatch pattern={searchPattern} />
+            }
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'>
                 {
                     blogData.map(blog => <BlogCard blog={blog} />)

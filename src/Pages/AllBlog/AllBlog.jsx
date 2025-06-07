@@ -1,11 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaSearch } from 'react-icons/fa';
 import { useLoaderData } from 'react-router';
 import BlogCard from './BlogCard';
+import axios from 'axios';
+
 
 const AllBlog = () => {
+    const data = useLoaderData();
 
-    const blogData = useLoaderData();
+    const [category, setCategory] = useState('All');
+    const [blogData, setBlogData] = useState([]);
+    const [notMatch,setNotMatch]=useState(false)
+
+    useEffect(() => {
+        if (category === 'All') {
+            setBlogData(data)
+        } else {
+            const filteredByCat = data.filter(blog => blog.category === category);
+            setBlogData(filteredByCat)
+        }
+    }, [category, data])
+
+
+    const handleSearchBlog= async (e)=>{
+        e.preventDefault();
+        const pattern = e.target.value;
+        if(pattern.length===0){
+            setBlogData(data);
+            return
+        }
+        const response=await axios.get(`http://localhost:3000/search/${pattern}`);
+        const resData=response.data;
+        if(resData.length===0){
+            setNotMatch(true)
+            console.log("not mach")
+        }
+        setNotMatch(false)
+        setBlogData(resData)
+        
+    }
+
 
     return (
         <div className='max-w-11/12 mx-auto '>
@@ -13,19 +47,27 @@ const AllBlog = () => {
             <div className='flex justify-center items-center py-4'>
                 <div>
                     <div className="dropdown dropdown-right">
-                        <div tabIndex={0} role="button" className="btn m-1">Filter <FaArrowDown/></div>
+                        <div tabIndex={0} role="button" className="btn m-1">Filter <FaArrowDown /></div>
                         <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                            <li>Item 1</li>
-                            <li>tem 2</li>
+                            <li onClick={() => setCategory('Js framework')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Js Framework</li>
+                            <li onClick={() => setCategory('Styling')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Styling</li>
+                            <li onClick={() => setCategory('Js core concepts')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Js core concepts</li>
+                            <li onClick={() => setCategory('Web Development')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Web Development</li>
+                            <li onClick={() => setCategory('Backend Framework')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Backend Framework</li>
+                            <li onClick={() => setCategory('Artificial Inelegant')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Artificial Inelegant</li>
+                            <li onClick={() => setCategory('All')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>All</li>
                         </ul>
                     </div>
                 </div>
 
                 <div className='py-1.5 border px-2 flex items-center '>
-                    <input type="text" className='border-amber-400 outline-0' placeholder='search'  />
-                    <FaSearch onClick={()=>console.log("clicked")} size={15}/>
+                    <input onChange={handleSearchBlog} type="text" className='border-amber-400 outline-0' placeholder='search' />
+
+                    <FaSearch onClick={() => console.log("clicked")} size={15} className='cursor-pointer'/>
+
                 </div>
             </div>
+                
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'>
                 {
                     blogData.map(blog => <BlogCard blog={blog} />)

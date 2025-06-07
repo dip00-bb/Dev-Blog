@@ -11,7 +11,7 @@ const Banner = () => {
                     <HoverButton/>
                 </div>
             </div>
-            <div className='md:flex-1 flex justify-center items-center md:h-[70vh]'>
+            <div className='md:flex-1 flex justify-center items-center md:h-[50vh]'>
                 <img className='h-full w-full' src="./banner.png" alt="banner" />
             </div>
         </div>

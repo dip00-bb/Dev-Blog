@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Skeleton from '../Skeleton/Skeleton';
 import SingleBlog from './SingleBlog';
+import ServerError from '../ServerError/ServerError';
 
 const RecentBlog = () => {
 
@@ -28,7 +29,7 @@ const RecentBlog = () => {
 
 
     if(loading) return <p>Iam</p>
-    if(error) return <p>Failed to get data from server</p>
+    if(error) return <ServerError/>
 
     return (
         <div className='space-y-3.5'>

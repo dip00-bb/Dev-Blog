@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../RootLayout/RootLayout";
 import ErrorPage from "../Errorpage/Errorpage";
-import { Component } from "lucide-react";
 import Home from "../Pages/Home";
 import Register from "../Pages/Register";
 import Login from "../Pages/Login";
@@ -9,6 +8,7 @@ import AddBlog from "../Pages/AddBlog";
 import PrivateRoute from "../PrivateRoute.jsx/PrivateRoute";
 import WishList from "../Pages/WishList";
 import AllBlog from "../Pages/AllBlog/AllBlog";
+import ServerError from "../Component/ServerError/ServerError";
 
 export const router = createBrowserRouter([
     {
@@ -29,16 +29,18 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'addblog',
-                element:<PrivateRoute><AddBlog></AddBlog></PrivateRoute>
+                element: <PrivateRoute><AddBlog></AddBlog></PrivateRoute>
             },
             {
-                path:'wishlist',
-                element:<PrivateRoute><WishList></WishList></PrivateRoute>
+                path: 'wishlist',
+                element: <PrivateRoute><WishList></WishList></PrivateRoute>
             },
             {
-                path:'allblog',
-                Component:AllBlog,
-                loader:()=>fetch('http://localhost:3000/allblog')
+                path: 'allblog',
+                Component: AllBlog,
+                loader: () => fetch('https://blog-server-three-inky.vercel.app/allblog'),
+                errorElement:<ServerError/>
+                
             }
         ]
     },

@@ -37,7 +37,7 @@ const AllBlog = () => {
         const resData = response.data;
         if (resData.length === 0) {
             setNotMatch(true)
-            console.log("not mach")
+            // console.log("not mach")
         } else {
             setNotMatch(false)
             setBlogData(resData)
@@ -57,7 +57,7 @@ const AllBlog = () => {
                         <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
                             <li onClick={() => setCategory('Js framework')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Js Framework</li>
                             <li onClick={() => setCategory('Styling')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Styling</li>
-                            <li onClick={() => setCategory('Js core concepts')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Js core concepts</li>
+                            <li onClick={() => setCategory('Js Core Concepts')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Js core concepts</li>
                             <li onClick={() => setCategory('Web Development')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Web Development</li>
                             <li onClick={() => setCategory('Backend Framework')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Backend Framework</li>
                             <li onClick={() => setCategory('Artificial Inelegant')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Artificial Inelegant</li>
@@ -69,7 +69,7 @@ const AllBlog = () => {
                 <div className='py-1.5 border px-2 flex items-center '>
                     <input onChange={handleSearchBlog} type="text" className='border-amber-400 outline-0' placeholder='search' />
 
-                    <FaSearch onClick={() => console.log("clicked")} size={15} className='cursor-pointer' />
+                    <FaSearch size={15} className='cursor-pointer' />
 
                 </div>
             </div>

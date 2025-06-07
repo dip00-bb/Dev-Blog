@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router';
 import { AuthContext } from '../AuthContext/AuthContext';
-import Skeleton from 'daisyui/components/skeleton';
+import Skeleton from '../Component/Skeleton/Skeleton';
+
 
 const PrivateRoute = ({children}) => {
 

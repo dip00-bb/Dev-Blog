@@ -28,7 +28,7 @@ const RecentBlog = () => {
     }, [])
 
 
-    if(loading) return <p>Iam</p>
+    if(loading) return <Skeleton/>
     if(error) return <ServerError/>
 
     return (

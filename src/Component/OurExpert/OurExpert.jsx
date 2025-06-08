@@ -26,7 +26,7 @@ const OurExpert = () => {
                         <img className='rounded-xl' src="https://i.ibb.co/gBQZj6d/istockphoto-1017296544-612x612.jpg" alt="men dev" />
                     </div>
                     <div className='flex items-center justify-around '>
-                        <p className='font-bold'>Sarah B. Johnson</p>
+                        <p className='font-bold'>Mc Stanhum</p>
                         <div className='flex gap-3'>
                             <FaFacebook></FaFacebook>
                             <FaInstagram></FaInstagram>
@@ -38,7 +38,7 @@ const OurExpert = () => {
                         <img className='rounded-xl' src="https://i.ibb.co/HD6Zb41T/istockphoto-1171173195-612x612.jpg" alt="girl dev 2" />
                     </div>
                     <div className='flex items-center justify-around '>
-                        <p className='font-bold'>Sarah B. Johnson</p>
+                        <p className='font-bold'>Amela Nicola</p>
                         <div className='flex gap-3'>
                             <FaFacebook></FaFacebook>
                             <FaInstagram></FaInstagram>

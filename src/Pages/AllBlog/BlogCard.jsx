@@ -17,7 +17,7 @@ const BlogCard = ({ blog }) => {
 
         <div className="flex items-center justify-between gap-2">
           <Link
-            to="/"
+            to={`/blogdetails/${blog._id}`}
             className="relative inline-flex items-center justify-start py-2.5 pl-4 pr-12 overflow-hidden font-semibold text-indigo-600 transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-blue-200 group"
           >
             <span className="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-indigo-300 group-hover:bg-indigo-500 group-hover:h-full"></span>

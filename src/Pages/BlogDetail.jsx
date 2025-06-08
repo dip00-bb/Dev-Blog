@@ -1,12 +1,31 @@
-import React, { use } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../AuthContext/AuthContext';
 import { useLoaderData, useParams } from 'react-router';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const BlogDetail = () => {
-    const { user } = use(AuthContext); 
-    const allBlogData = useLoaderData(); 
-    const { id } = useParams(); 
+
+    const { user } = use(AuthContext);
+    const allBlogData = useLoaderData();
+    const { id } = useParams();
+
+    const [comments,setComment]=useState([])
+    const [error, setError] = useState(null)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // setLoading(true);
+                const response = await axios.get(`http://localhost:3000/blog/comment/${id}`);
+                setComment(response.data)
+            } catch (error) {
+                setError(error.message)
+            }
+        }
+
+        fetchData()
+    }, [id,comments])
 
     const matchedBlog = allBlogData.find(blog => blog._id === id);
 
@@ -18,17 +37,31 @@ const BlogDetail = () => {
         );
     }
 
-    const { title, image, short_description, category, details, author, published_date,uid } = matchedBlog;
+    const { title, image, short_description, category, details, author, published_date, uid } = matchedBlog;
 
-    const handleComment=(e)=>{
+    const handleComment = (e) => {
         e.preventDefault()
-        if(user.uid===uid){
+        if (user.uid === uid) {
             toast("Owner can not comment on his own blog");
             return
-        }else{
-            const form=e.target;
-            const comment=form.cmnt.value;
-            console.log(comment)
+        } else {
+            const form = e.target;
+            const comment = form.cmnt.value;
+            const blogID = id;
+            const commentorEmail = user.email;
+            const commentorProfile = user.photoURL;
+            const author=user.displayName;
+
+            const commentorInfo = { comment, blogID, commentorProfile, commentorEmail, author }
+
+            axios.post('http://localhost:3000/blog/comment', { commentorInfo })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    toast.warn(error.message);
+                });
+
         }
     }
 
@@ -77,7 +110,7 @@ const BlogDetail = () => {
                             <div className="avatar">
                                 <div className="ring-primary ring-offset-base-100 w-14 h-14 rounded-full ring-2 ring-offset-2">
                                     <img
-                                        src={user?.photoURL || 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'} 
+                                        src={user?.photoURL || 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'}
                                         alt="User Avatar"
                                     />
                                 </div>
@@ -100,15 +133,15 @@ const BlogDetail = () => {
                             </div>
                         </form>
                     </div>
-{/* 
+                    
 
-                    <div className="space-y-6">
-                        {dummyComments.map((comment) => (
-                            <div key={comment.id} className="flex items-start space-x-4">
+                     <div className="space-y-6">
+                         {comments.map((comment) => (
+                            <div key={comment.id} className="flex items-start space-x-4 bg-gray-300/40 rounded-xl p-5">
                                 <div className="flex-shrink-0">
                                     <div className="avatar">
                                         <div className="w-10 h-10 rounded-full overflow-hidden">
-                                            <img src={comment.avatar} alt={`${comment.author}'s avatar`} />
+                                            <img src={comment.commentorProfile} alt={`${comment.author}'s avatar`} />
                                         </div>
                                     </div>
                                 </div>
@@ -117,19 +150,19 @@ const BlogDetail = () => {
                                         <p className="font-semibold text-gray-900">{comment.author}</p>
                                         <p className="text-sm text-gray-500">{comment.time}</p>
                                     </div>
-                                    <p className="text-gray-700 mt-1">{comment.text}</p>
+                                    <p className="text-gray-700 mt-1">{comment.comment}</p>
                                 </div>
                             </div>
                         ))}
 
-                        {dummyComments.length > 0 && (
+                        {/* {comments.length > 0 && (
                             <div className="text-center mt-8">
                                 <button className="text-indigo-600 hover:text-indigo-800 font-medium">
                                     Load more comments
                                 </button>
                             </div>
-                        )}
-                    </div> */}
+                        )} */}
+                    </div>
                 </section>
             </div>
         </div>

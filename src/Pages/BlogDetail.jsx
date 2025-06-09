@@ -1,6 +1,6 @@
 import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../AuthContext/AuthContext';
-import { useLoaderData, useParams } from 'react-router';
+import { Link, useLoaderData, useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
@@ -10,7 +10,7 @@ const BlogDetail = () => {
     const allBlogData = useLoaderData();
     const { id } = useParams();
 
-    const [comments,setComment]=useState([])
+    const [comments, setComment] = useState([])
     const [error, setError] = useState(null)
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const BlogDetail = () => {
         }
 
         fetchData()
-    }, [id,comments])
+    }, [id, comments])
 
     const matchedBlog = allBlogData.find(blog => blog._id === id);
 
@@ -50,7 +50,7 @@ const BlogDetail = () => {
             const blogID = id;
             const commentorEmail = user.email;
             const commentorProfile = user.photoURL;
-            const author=user.displayName;
+            const author = user.displayName;
 
             const commentorInfo = { comment, blogID, commentorProfile, commentorEmail, author }
 
@@ -126,17 +126,23 @@ const BlogDetail = () => {
                                 name='cmnt'
                                 required
                             ></textarea>
-                            <div className="text-right mt-3">
+                            <div className="text-right mt-3 space-x-6">
                                 <button type='submit' className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200 ease-in-out">
                                     Comment
                                 </button>
+
+                                {
+                                    user.uid === uid && <Link state={{blog:matchedBlog}} to={`/updateblog/${id}`} type='button' className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200 ease-in-out">
+                                        update
+                                    </Link>
+                                }
                             </div>
                         </form>
                     </div>
-                    
 
-                     <div className="space-y-6">
-                         {comments.map((comment) => (
+
+                    <div className="space-y-6">
+                        {comments.map((comment) => (
                             <div key={comment.id} className="flex items-start space-x-4 bg-gray-300/40 rounded-xl p-5">
                                 <div className="flex-shrink-0">
                                     <div className="avatar">

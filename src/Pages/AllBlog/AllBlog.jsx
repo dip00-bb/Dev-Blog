@@ -55,12 +55,12 @@ const AllBlog = () => {
                     <div className="dropdown dropdown-right">
                         <div tabIndex={0} role="button" className="btn m-1">Filter <FaArrowDown /></div>
                         <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                            <li onClick={() => setCategory('Js framework')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Js Framework</li>
+                            <li onClick={() => setCategory('Js framework')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Js framework</li>
                             <li onClick={() => setCategory('Styling')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Styling</li>
-                            <li onClick={() => setCategory('Js Core Concepts')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Js core concepts</li>
-                            <li onClick={() => setCategory('Web Development')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Web Development</li>
-                            <li onClick={() => setCategory('Backend Framework')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Backend Framework</li>
-                            <li onClick={() => setCategory('Artificial Inelegant')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Artificial Inelegant</li>
+                            <li onClick={() => setCategory('Js core concepts')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Js core concepts</li>
+                            <li onClick={() => setCategory('Web development')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Web development</li>
+                            <li onClick={() => setCategory('Backend framework')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Backend framework</li>
+                            <li onClick={() => setCategory('Artificial inelegant')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Artificial inelegant</li>
                             <li onClick={() => setCategory('All')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>All</li>
                         </ul>
                     </div>

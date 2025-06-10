@@ -14,7 +14,7 @@ export default function Register() {
   const handleGoogleLogIn = () => {
     googleLogin().then((result) => {
       setUser(result.user)
-      console.log(result.user)
+      // console.log(result.user)
       toast("Registration Successful")
       navigate('/')
     }).catch(error => {

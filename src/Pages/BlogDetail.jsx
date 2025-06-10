@@ -17,7 +17,7 @@ const BlogDetail = () => {
         const fetchData = async () => {
             try {
                 // setLoading(true);
-                const response = await axios.get(`http://localhost:3000/blog/comment/${id}`);
+                const response = await axios.get(`https://blog-server-three-inky.vercel.app/blog/comment/${id}`);
                 setComment(response.data)
             } catch (error) {
                 setError(error.message)
@@ -54,7 +54,7 @@ const BlogDetail = () => {
 
             const commentorInfo = { comment, blogID, commentorProfile, commentorEmail, author }
 
-            axios.post('http://localhost:3000/blog/comment', { commentorInfo })
+            axios.post('https://blog-server-three-inky.vercel.app/blog/comment', { commentorInfo })
                 .then(function (response) {
                     console.log(response);
                 })

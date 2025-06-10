@@ -1,6 +1,7 @@
 import axios from "axios";
 import { use, useState } from "react";
 import { AuthContext } from "../AuthContext/AuthContext";
+import { toast } from "react-toastify";
 
 
 const AddBlog = () => {
@@ -30,7 +31,7 @@ const AddBlog = () => {
     const blogData={title,image,short_description,details,category,uid};
     axios.post('http://localhost:3000/blog/allblog',{blogData})
     .then(res=>console.log(res))
-    .catch(error=>console.log(error))
+    .catch(error=>toast.warn(error))
   }
 
 

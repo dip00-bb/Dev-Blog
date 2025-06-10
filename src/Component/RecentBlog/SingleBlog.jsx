@@ -1,9 +1,50 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
+import { AuthContext } from '../../AuthContext/AuthContext';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const SingleBlog = ({ blog }) => {
+    const { category, title, short_description, image, _id } = blog
+    const { user } = use(AuthContext);
 
-    const { category, title, short_description, image,_id } = blog
+
+    const handleAddToWishList = () => {
+
+        if (!user){
+             toast("Please login first"); 
+             return
+        } 
+
+
+        axios.get(`http://localhost:3000/user/wishlist?email=${user.email}&blogId=${_id}`)
+            .then(function (response) {
+                if (response.data.exist) {
+                    toast("Already in wishlist")
+                } else {
+                    const wishlistInformation = { email: user.email, blogId: _id } 
+                    axios.post(`http://localhost:3000/user/wishlist`, { wishlistInformation })
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            toast.warn(error.message);
+                        });
+                }
+            })
+            .catch(function (error) {
+                toast.warn(error);
+                return
+            })
+
+
+
+
+
+
+    }
+
+
     return (
         <div>
             <div className="flex max-w-[90rem] mx-auto p-4 items-center justify-between space-x-4 bg-white rounded-lg shadow-sm">
@@ -24,9 +65,9 @@ const SingleBlog = ({ blog }) => {
                             <span className="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white">View Details</span>
                         </Link>
 
-                        <Link to='/' class="inline-flex overflow-hidden text-white bg-cyan-800 rounded group ">
+                        <button onClick={handleAddToWishList} class="inline-flex overflow-hidden text-white bg-cyan-800 rounded group cursor-pointer">
                             <span class="pl-6 pr-5 py-2.5">Add to Wishlist</span>
-                        </Link>
+                        </button>
                     </div>
                 </div>
 

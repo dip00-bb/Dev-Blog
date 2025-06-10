@@ -11,6 +11,7 @@ import AllBlog from "../Pages/AllBlog/AllBlog";
 import ServerError from "../Component/ServerError/ServerError";
 import BlogDetail from "../Pages/BlogDetail";
 import UpdateBlog from "../Pages/UpdateBlog";
+import TopInTable from "../Pages/TopInTable";
 
 export const router = createBrowserRouter([
     {
@@ -45,13 +46,23 @@ export const router = createBrowserRouter([
             },
             {
                 path:'blogdetails/:id',
-                loader: () => fetch('http://localhost:3000/allblog'),
+                loader: () => fetch('https://blog-server-three-inky.vercel.app/allblog'),
                 element: <PrivateRoute><BlogDetail/></PrivateRoute>
             },
                         {
                 path: 'updateblog/:id',
-                element: <UpdateBlog/>
+                element: <PrivateRoute><UpdateBlog/></PrivateRoute>,
+                errorElement:<ServerError/>
             },
+            {
+                path:'table',
+                element:<TopInTable/>
+
+            },
+            {
+                path:'wishlist',
+                element:<PrivateRoute><WishList></WishList></PrivateRoute>
+            }
         ]
     },
     {

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { use, useState } from 'react';
 import { AuthContext } from '../AuthContext/AuthContext';
 import { useLocation, useParams } from 'react-router';
+import { toast } from 'react-toastify';
 
 
 const UpdateBlog = () => {
@@ -42,7 +43,7 @@ const UpdateBlog = () => {
         console.log(blogData)
         axios.put(`http://localhost:3000/blog/updateblog/${id}`, { blogData })
             .then(res => console.log(res))
-            .catch(error => console.log(error))
+            .catch(error => toast.warn(error))
 
     }
 

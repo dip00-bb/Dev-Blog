@@ -1,6 +1,44 @@
+import { use } from 'react';
 import { Link } from 'react-router';
+import { AuthContext } from '../../AuthContext/AuthContext';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const BlogCard = ({ blog }) => {
+
+
+  const {user}=use(AuthContext)
+
+  const handleAddToWishList = () => {
+
+    if (!user) {
+      toast("Please login first");
+      return
+    }
+
+
+    axios.get(`http://localhost:3000/user/wishlist?email=${user.email}&blogId=${blog._id}`)
+      .then(function (response) {
+        if (response.data.exist) {
+          toast.warn("Already in wishlist")
+        } else {
+          const wishlistInformation = { email: user.email, blogId: blog._id }
+          axios.post(`http://localhost:3000/user/wishlist`, { wishlistInformation })
+            .then(function (response) {
+              if (response.status === 200) toast.success("Added in wishlist successfully")
+            })
+            .catch(function (error) {
+              toast.warn(error.message);
+            });
+        }
+      })
+      .catch(function (error) {
+        toast.warn(error);
+        return
+      })
+
+  }
+
   return (
     <div className="max-w-sm rounded-xl overflow-hidden shadow-xl bg-white hover:shadow-2xl transition-shadow duration-300 border border-gray-100">
       <img
@@ -36,12 +74,12 @@ const BlogCard = ({ blog }) => {
             </span>
           </Link>
 
-          <Link
-            to="/"
-            className="inline-flex items-center text-white bg-cyan-800 hover:bg-cyan-900 px-4 py-2.5 rounded transition-all duration-150"
+          <button
+            onClick={handleAddToWishList}
+            className="inline-flex items-center text-white bg-cyan-800 hover:bg-cyan-900 px-4 py-2.5 rounded transition-all duration-150 cursor-pointer"
           >
             Add to Wishlist
-          </Link>
+          </button>
         </div>
       </div>
     </div>

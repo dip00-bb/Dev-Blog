@@ -5,21 +5,21 @@ import { toast } from 'react-toastify';
 
 
 
+
 const Navbar = () => {
 
-
-  const handleLogOut=()=>{
+  const handleLogOut = () => {
     signout().then(() => {
-            toast("Log out successful")
-        }).catch(error => {
-            toast.warn(error.message)
-        })
+      toast("Log out successful")
+    }).catch(error => {
+      toast.warn(error.message)
+    })
   }
 
 
 
 
-  const { user,signout } = use(AuthContext)
+  const { user, signout } = use(AuthContext)
   const links = <><li><NavLink className='text-xl' to='/'>Home</NavLink></li>
     <li><NavLink className='text-xl' to='/addblog'>Add Blog</NavLink></li>
     <li><NavLink className='text-xl' to='/allblog'>All Blog</NavLink></li>
@@ -41,7 +41,7 @@ const Navbar = () => {
             }
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link to='/' className="btn btn-ghost text-xl">DevBlog</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

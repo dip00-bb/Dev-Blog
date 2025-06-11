@@ -20,12 +20,12 @@ const SingleBlog = ({ blog }) => {
         axios.get(`http://localhost:3000/user/wishlist?email=${user.email}&blogId=${_id}`)
             .then(function (response) {
                 if (response.data.exist) {
-                    toast("Already in wishlist")
+                    toast.warn("Already in wishlist")
                 } else {
                     const wishlistInformation = { email: user.email, blogId: _id } 
                     axios.post(`http://localhost:3000/user/wishlist`, { wishlistInformation })
                         .then(function (response) {
-                            console.log(response);
+                            if(response.status===200) toast.success("Added in wishlist successfully")
                         })
                         .catch(function (error) {
                             toast.warn(error.message);
@@ -36,11 +36,6 @@ const SingleBlog = ({ blog }) => {
                 toast.warn(error);
                 return
             })
-
-
-
-
-
 
     }
 

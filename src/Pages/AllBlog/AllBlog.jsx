@@ -35,6 +35,7 @@ const AllBlog = () => {
         }
         const response = await axios.get(`http://localhost:3000/search/${pattern}`);
         const resData = response.data;
+        console.log("data data",resData)
         if (resData.length === 0) {
             setNotMatch(true)
             // console.log("not mach")
@@ -78,7 +79,7 @@ const AllBlog = () => {
             }
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'>
                 {
-                    blogData.map(blog => <BlogCard blog={blog} />)
+                    blogData.map(blog => <BlogCard key={blog._id} blog={blog} />)
                 }
             </div>
         </div>

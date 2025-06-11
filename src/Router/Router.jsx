@@ -12,6 +12,7 @@ import ServerError from "../Component/ServerError/ServerError";
 import BlogDetail from "../Pages/BlogDetail";
 import UpdateBlog from "../Pages/UpdateBlog";
 import TopInTable from "../Pages/TopInTable";
+import FeatureBlog from "../Pages/FeatureBlog";
 
 export const router = createBrowserRouter([
     {
@@ -62,6 +63,11 @@ export const router = createBrowserRouter([
             {
                 path:'wishlist',
                 element:<PrivateRoute><WishList></WishList></PrivateRoute>
+            },
+            {
+                path:'featureblog',
+                loader: () => fetch('https://blog-server-three-inky.vercel.app/feature_blog'),
+                element:<FeatureBlog/>
             }
         ]
     },

@@ -28,14 +28,14 @@ const RecentBlog = () => {
     }, [])
 
 
-    if(loading) return <Skeleton/>
-    if(error) return <ServerError/>
+    if (loading) return <Skeleton />
+    if (error) return <ServerError />
 
     return (
         <div className='space-y-3.5'>
             <h1 className='text-center text-3xl md:text-6xl font-semibold mt-9'>Recent News</h1>
             {
-                blogs.map(blog=> <SingleBlog key={blog._id} blog={blog}></SingleBlog>)
+                blogs.map(blog => <SingleBlog key={blog._id} blog={blog}></SingleBlog>)
             }
         </div>
     );

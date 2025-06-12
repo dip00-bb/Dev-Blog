@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Skeleton from '../Skeleton/Skeleton';
 import SingleBlog from './SingleBlog';
 import ServerError from '../ServerError/ServerError';
+import { TypingEffect } from '../TypingEffect/TypingEffect';
 
 const RecentBlog = () => {
 
@@ -34,6 +35,7 @@ const RecentBlog = () => {
     return (
         <div className='space-y-3.5'>
             <h1 className='text-center text-3xl md:text-6xl font-semibold mt-9'>Recent News</h1>
+            {/* <TypingEffect text="Recent News" /> */}
             {
                 blogs.map(blog => <SingleBlog key={blog._id} blog={blog}></SingleBlog>)
             }

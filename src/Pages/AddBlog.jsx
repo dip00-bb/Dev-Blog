@@ -2,43 +2,51 @@ import axios from "axios";
 import { use, useState } from "react";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 
 const AddBlog = () => {
 
   const categories = [
-    "Js Framework",
+    "Js framework",
     "Styling",
     "Js core concepts",
-    "Web Development",
-    "Backend Framework",
-    "Artificial Intelligence"
+    "Web development",
+    "Backend framework",
+    "Artificial intelligence"
   ];
 
-  const {user}=use(AuthContext);
+  const { user } = use(AuthContext);
 
-  const [blogCategory,setCategory]=useState('Js Framework')
+  const [blogCategory, setCategory] = useState('Js framework')
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const form =e.target;
-    const title=form.title.value;
-    const image=form.imageUrl.value;
-    const short_description=form.shortDesc.value;
-    const details=form.desc.value;
-    const category=blogCategory;
-    const uid=user.uid;
-    const blogData={title,image,short_description,details,category,uid};
-    axios.post('http://localhost:3000/blog/allblog',{blogData})
-    .then(res=>console.log(res))
-    .catch(error=>toast.warn(error))
+    const form = e.target;
+    const title = form.title.value;
+    const image = form.imageUrl.value;
+    const short_description = form.shortDesc.value;
+    const details = form.desc.value;
+    const category = blogCategory;
+    const uid = user.uid;
+    const blogData = { title, image, short_description, details, category, uid };
+    axios.post('https://blog-server-three-inky.vercel.app/blog/allblog', { blogData })
+      .then(res => {
+        if (res.data.acknowledged) {
+          Swal.fire({
+            title:'Blog added successfully',
+            icon: "success",
+            draggable: true
+          });
+        }
+      })
+      .catch(error => toast.warn(error))
   }
 
 
-  const getCategory=e=>{
-    const categoryValue= e.target.value;
-    console.log(categoryValue)
-    setCategory( categoryValue)
+  const getCategory = e => {
+    const categoryValue = e.target.value;
+    setCategory(categoryValue)
   }
 
   return (
@@ -104,7 +112,7 @@ const AddBlog = () => {
 
         <button
           type="submit"
-          className="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700"
+          className="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 cursor-pointer"
         >
           Submit Blog
         </button>

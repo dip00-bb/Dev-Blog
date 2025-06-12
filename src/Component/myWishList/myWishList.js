@@ -1,3 +1,7 @@
-// export const myApplicationsPromise=(email,accessToken)=>{
-//     return fetch(`http://localhost:3000/`)
-// }
+export const myApplicationsPromise=(email,accessToken)=>{
+    return fetch(`https://blog-server-three-inky.vercel.app/user/userWishlist/?email=${email}`,{
+        headers:{
+            authorization:`Bearer ${accessToken}`
+        }
+    })
+} 

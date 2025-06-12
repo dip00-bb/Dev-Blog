@@ -163,7 +163,7 @@ export default function Register() {
             <div className="relative mt-4 text-center">
               <span className="text-gray-400 text-sm">Or Sign up with</span>
               <div className="mt-2 flex justify-center space-x-4">
-                <button onClick={handleGoogleLogIn} type="button" className="bg-white p-3 rounded-lg shadow hover:shadow-md transition">
+                <button onClick={handleGoogleLogIn} type="button" className="bg-white p-3 rounded-lg shadow hover:shadow-md transition cursor-pointer">
                   <FaGoogle className="text-red-500" />
                 </button>
               </div>

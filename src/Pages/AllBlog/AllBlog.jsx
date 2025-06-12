@@ -33,9 +33,8 @@ const AllBlog = () => {
             setBlogData(data);
             return
         }
-        const response = await axios.get(`http://localhost:3000/search/${pattern}`);
+        const response = await axios.get(`https://blog-server-three-inky.vercel.app/search/${pattern}`);
         const resData = response.data;
-        console.log("data data",resData)
         if (resData.length === 0) {
             setNotMatch(true)
             // console.log("not mach")
@@ -61,7 +60,7 @@ const AllBlog = () => {
                             <li onClick={() => setCategory('Js core concepts')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Js core concepts</li>
                             <li onClick={() => setCategory('Web development')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Web development</li>
                             <li onClick={() => setCategory('Backend framework')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Backend framework</li>
-                            <li onClick={() => setCategory('Artificial inelegant')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Artificial inelegant</li>
+                            <li onClick={() => setCategory('Artificial intelligence')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>Artificial intelligence</li>
                             <li onClick={() => setCategory('All')} className='cursor-pointer py-2.5 border-gray-300 hover:bg-blue-300 rounded-sm px-2.5'>All</li>
                         </ul>
                     </div>

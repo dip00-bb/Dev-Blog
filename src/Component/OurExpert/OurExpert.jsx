@@ -1,9 +1,10 @@
+
 import React from 'react';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 
 const OurExpert = () => {
     return (
-        <div className='flex gap-5 max-w-11/12 mx-auto flex-wrap lg:flex-nowrap my-10 justify-center'>
+        <div initial={{ backgroundColor: "rgb(0, 255, 0)", opacity: 0 }} whileInView={{ backgroundColor: "rgb(255, 0, 0)", opacity: 1 }} className='flex gap-5 max-w-11/12 mx-auto flex-wrap lg:flex-nowrap my-10 justify-center'>
             <div className='w-2xl mx-auto lg:mx-0'>
                 <p className='text-3xl font-bold'>Learn From Our Expert</p>
                 <p>Dive into the world of web development with guidance from seasoned industry professionals. Whether you're just starting out or looking to sharpen your skills, our expert-led training helps you master the core technologies—HTML, CSS, JavaScript, and beyond. From building responsive websites to creating dynamic web applications, you'll gain hands-on experience, real-world knowledge, and insider tips that only professionals can offer. Learn the tools, best practices, and frameworks used in the industry today—and get one step closer to becoming a confident, job-ready developer.</p>

@@ -3,11 +3,12 @@ import React, { use, useState } from 'react';
 import { AuthContext } from '../AuthContext/AuthContext';
 import { useLocation, useParams } from 'react-router';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 
 const UpdateBlog = () => {
     const location = useLocation();
-    const {id}=useParams()
+    const { id } = useParams()
     const { user } = use(AuthContext);
     const { blog } = location.state || {};
     const { title, image, short_description, category, details } = blog
@@ -17,11 +18,10 @@ const UpdateBlog = () => {
         "Js core concepts",
         "Web development",
         "Backend framework",
-        "Artificial inelegant"
+        "Artificial intelligence"
     ];
 
     const [blogCategory, setCategory] = useState(category);
-    console.log(blogCategory)
 
 
 
@@ -39,10 +39,18 @@ const UpdateBlog = () => {
         const details = form.desc.value;
         const category = blogCategory;
         const uid = user.uid;
-        const blogData = {uid, title, image, short_description,category, details,};
-        console.log(blogData)
-        axios.put(`http://localhost:3000/blog/updateblog/${id}`, { blogData })
-            .then(res => console.log(res))
+        const blogData = { uid, title, image, short_description, category, details, };
+        axios.put(`https://blog-server-three-inky.vercel.app/blog/updateblog/${id}`, { blogData })
+            .then(res => {
+                if (res.data === "Document updated") {
+                    Swal.fire({
+                        title: "Document Updated",
+                        icon: "success",
+                        draggable: true
+                    });
+                    form.reset()
+                }
+            })
             .catch(error => toast.warn(error))
 
     }
@@ -120,7 +128,7 @@ const UpdateBlog = () => {
 
                 <button
                     type="submit"
-                    className="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700"
+                    className="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 cursor-pointer"
                 >
                     Update Blog
                 </button>

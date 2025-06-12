@@ -55,12 +55,6 @@ const BlogDetail = () => {
             const commentorInfo = { comment, blogID, commentorProfile, commentorEmail, author }
 
             axios.post('https://blog-server-three-inky.vercel.app/blog/comment', { commentorInfo })
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    toast.warn(error.message);
-                });
 
         }
     }
@@ -93,16 +87,21 @@ const BlogDetail = () => {
 
                 <article className="prose prose-lg max-w-none text-gray-800 leading-relaxed mb-12">
 
-                    <p>{details}</p>
 
+                    <p className='font-semibold text-blue-500 text-2xl my-4'>Short Description</p>
                     {short_description && (
-                        <p className="mt-8 italic text-gray-600">
+                        <p className="italic text-gray-600">
                             {short_description}
                         </p>
                     )}
+
+
+                    <p className='font-semibold text-blue-500 text-2xl my-4'>Description</p>
+                    <p>{details}</p>
                 </article>
 
                 <section className="bg-white p-8 rounded-lg shadow-md">
+                    {user.uid === uid && <p className='text-red-500 text-xl text-center'>Blog creator can not comment on his own blog</p>}
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">Comments</h2>
 
                     <div className="flex items-start mb-8 space-x-4">
@@ -127,12 +126,12 @@ const BlogDetail = () => {
                                 required
                             ></textarea>
                             <div className="text-right mt-3 space-x-6">
-                                <button type='submit' className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200 ease-in-out">
+                                <button type='submit' className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-md cursor-pointer hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200 ease-in-out">
                                     Comment
                                 </button>
 
                                 {
-                                    user.uid === uid && <Link state={{blog:matchedBlog}} to={`/updateblog/${id}`} type='button' className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200 ease-in-out">
+                                    user.uid === uid && <Link state={{ blog: matchedBlog }} to={`/updateblog/${id}`} type='button' className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200 ease-in-out">
                                         update
                                     </Link>
                                 }
@@ -142,8 +141,9 @@ const BlogDetail = () => {
 
 
                     <div className="space-y-6">
-                        {comments.map((comment) => (
-                            <div key={comment.id} className="flex items-start space-x-4 bg-gray-300/40 rounded-xl p-5">
+
+                        {comments.map((comment, index) => (
+                            <div key={index} className="flex items-start space-x-4 bg-gray-300/40 rounded-xl p-5">
                                 <div className="flex-shrink-0">
                                     <div className="avatar">
                                         <div className="w-10 h-10 rounded-full overflow-hidden">

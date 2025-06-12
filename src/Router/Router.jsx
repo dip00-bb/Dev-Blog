@@ -36,10 +36,6 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute><AddBlog></AddBlog></PrivateRoute>
             },
             {
-                path: 'wishlist',
-                element: <PrivateRoute><WishList></WishList></PrivateRoute>
-            },
-            {
                 path: 'allblog',
                 Component: AllBlog,
                 loader: () => fetch('https://blog-server-three-inky.vercel.app/allblog'),
@@ -62,6 +58,7 @@ export const router = createBrowserRouter([
             },
             {
                 path:'wishlist',
+                loader: () => fetch('https://blog-server-three-inky.vercel.app/allblog'),
                 element:<PrivateRoute><WishList></WishList></PrivateRoute>
             },
             {

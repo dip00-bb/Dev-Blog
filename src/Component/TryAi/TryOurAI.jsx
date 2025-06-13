@@ -1,3 +1,7 @@
+
+import * as motion from "motion/react-client"
+
+
 export default function TryOurAI() {
   return (
     <section className="max-w-11/12 mx-auto bg-gradient-to-br from-white-100 text-white py-16 px-6 lg:px-20 rounded-2xl shadow-sm my-10">
@@ -15,24 +19,24 @@ export default function TryOurAI() {
           Try it Now
         </a>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-          <div className="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition-all duration-300">
+          <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} className="bg-gray-800 p-6 rounded-xl hover:bg-gray-700">
             <h3 className="text-xl font-semibold mb-2">💡 Code Suggestions</h3>
             <p className="text-gray-400">
               Get instant suggestions for HTML, CSS, JavaScript, React and more.
             </p>
-          </div>
-          <div className="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition-all duration-300">
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} className="bg-gray-800 p-6 rounded-xl hover:bg-gray-700">
             <h3 className="text-xl font-semibold mb-2">📘 Learn Faster</h3>
             <p className="text-gray-400">
               Ask anything about programming concepts, tools, and documentation.
             </p>
-          </div>
-          <div className="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition-all duration-300">
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} className="bg-gray-800 p-6 rounded-xl hover:bg-gray-700">
             <h3 className="text-xl font-semibold mb-2">🛠️ Debug Help</h3>
             <p className="text-gray-400">
               Stuck? Paste your code and get explanations, fixes, and tips.
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

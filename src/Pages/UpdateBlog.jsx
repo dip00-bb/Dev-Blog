@@ -40,9 +40,14 @@ const UpdateBlog = () => {
         const category = blogCategory;
         const uid = user.uid;
         const blogData = { uid, title, image, short_description, category, details, };
-        axios.put(`https://blog-server-three-inky.vercel.app/blog/updateblog/${id}`, { blogData })
+        axios.put(`https://blog-server-three-inky.vercel.app/blog/updateblog/${id}`, { blogData }, {
+            headers: {
+                Authorization: `Bearer ${user.accessToken}`
+            }
+        })
             .then(res => {
                 if (res.data === "Document updated") {
+                    e.target.reset()
                     Swal.fire({
                         title: "Document Updated",
                         icon: "success",

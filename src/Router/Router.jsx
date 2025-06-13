@@ -21,7 +21,8 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                Component: Home
+                Component: Home,
+                errorElement:<ServerError/>
             },
             {
                 path: 'register',
@@ -33,7 +34,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'addblog',
-                element: <PrivateRoute><AddBlog></AddBlog></PrivateRoute>
+                element: <PrivateRoute><AddBlog></AddBlog></PrivateRoute>,
+                errorElement:<ServerError/>
             },
             {
                 path: 'allblog',
@@ -44,27 +46,31 @@ export const router = createBrowserRouter([
             {
                 path:'blogdetails/:id',
                 loader: () => fetch('https://blog-server-three-inky.vercel.app/allblog'),
-                element: <PrivateRoute><BlogDetail/></PrivateRoute>
-            },
-                        {
-                path: 'updateblog/:id',
-                element: <PrivateRoute><UpdateBlog/></PrivateRoute>,
+                element: <PrivateRoute><BlogDetail/></PrivateRoute>,
                 errorElement:<ServerError/>
             },
             {
+                path: 'updateblog/:id',
+                element: <PrivateRoute><UpdateBlog/></PrivateRoute>,
+                errorElement:<ServerError/>,
+            },
+            {
                 path:'table',
-                element:<TopInTable/>
+                element:<TopInTable/>,
+                errorElement:<ServerError/>
 
             },
             {
                 path:'wishlist',
                 loader: () => fetch('https://blog-server-three-inky.vercel.app/allblog'),
-                element:<PrivateRoute><WishList></WishList></PrivateRoute>
+                element:<PrivateRoute><WishList></WishList></PrivateRoute>,
+                errorElement:<ServerError/>
             },
             {
                 path:'featureblog',
                 loader: () => fetch('https://blog-server-three-inky.vercel.app/feature_blog'),
-                element:<FeatureBlog/>
+                element:<FeatureBlog/>,
+                errorElement:<ServerError/>
             }
         ]
     },

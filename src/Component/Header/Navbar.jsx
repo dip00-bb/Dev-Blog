@@ -20,11 +20,11 @@ const Navbar = () => {
 
 
   const { user, signout } = use(AuthContext)
-  const links = <><li><NavLink className='text-xl' to='/'>Home</NavLink></li>
-    <li><NavLink className='text-xl' to='/addblog'>Add Blog</NavLink></li>
-    <li><NavLink className='text-xl' to='/allblog'>All Blog</NavLink></li>
-    <li><NavLink className='text-xl' to='/featureblog'>Feature Blog</NavLink></li>
-    <li><NavLink className='text-xl' to='/wishlist'>Wishlist</NavLink></li>
+  const links = <><li><NavLink className='text-xl hover:bg-blue-300' to='/'>Home</NavLink></li>
+    <li><NavLink className='text-xl hover:bg-blue-300' to='/addblog'>Add Blog</NavLink></li>
+    <li><NavLink className='text-xl hover:bg-blue-300' to='/allblog'>All Blog</NavLink></li>
+    <li><NavLink className='text-xl hover:bg-blue-300' to='/featureblog'>Feature Blog</NavLink></li>
+    <li><NavLink className='text-xl hover:bg-blue-300' to='/wishlist'>Wishlist</NavLink></li>
   </>
   return (
     <div className="navbar bg-base-100">
@@ -41,7 +41,7 @@ const Navbar = () => {
             }
           </ul>
         </div>
-        <Link to='/' className="btn btn-ghost text-xl">DevBlog</Link>
+        <Link to='/' className="text-xl font-bold text-blue-500">DevBlog</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -75,4 +75,6 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar; 
+
+

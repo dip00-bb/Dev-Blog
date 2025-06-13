@@ -1,6 +1,15 @@
 
 import React from 'react';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
+
+
+
+
+
+
+
 
 const OurExpert = () => {
     return (
@@ -12,7 +21,13 @@ const OurExpert = () => {
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
                 <div>
                     <div className='mb-2'>
-                        <img className='rounded-xl' src="https://i.ibb.co/QvV2n2Hq/young-office-worker-typing-laptop-computer-she-working-office-249974-9191.jpg" alt="girl dev" />
+
+                        <PhotoProvider>
+                            <PhotoView src="https://i.ibb.co/QvV2n2Hq/young-office-worker-typing-laptop-computer-she-working-office-249974-9191.jpg">
+                                <img className='rounded-xl' src="https://i.ibb.co/QvV2n2Hq/young-office-worker-typing-laptop-computer-she-working-office-249974-9191.jpg" alt="girl dev" />
+                            </PhotoView>
+                        </PhotoProvider>
+
                     </div>
                     <div className='flex items-center justify-around '>
                         <p className='font-bold'>Sarah B. Johnson</p>
@@ -24,7 +39,12 @@ const OurExpert = () => {
                 </div>
                 <div>
                     <div className='mb-2'>
-                        <img className='rounded-xl' src="https://i.ibb.co/gBQZj6d/istockphoto-1017296544-612x612.jpg" alt="men dev" />
+                        <PhotoProvider>
+                            <PhotoView src="https://i.ibb.co/gBQZj6d/istockphoto-1017296544-612x612.jpg">
+                                <img className='rounded-xl' src="https://i.ibb.co/gBQZj6d/istockphoto-1017296544-612x612.jpg" alt="men dev" />
+                            </PhotoView>
+                        </PhotoProvider>
+
                     </div>
                     <div className='flex items-center justify-around '>
                         <p className='font-bold'>Mc Stanhum</p>
@@ -36,7 +56,11 @@ const OurExpert = () => {
                 </div>
                 <div>
                     <div className='mb-2'>
-                        <img className='rounded-xl' src="https://i.ibb.co/HD6Zb41T/istockphoto-1171173195-612x612.jpg" alt="girl dev 2" />
+                        <PhotoProvider>
+                            <PhotoView src="https://i.ibb.co/HD6Zb41T/istockphoto-1171173195-612x612.jpg">
+                                <img className='rounded-xl' src="https://i.ibb.co/HD6Zb41T/istockphoto-1171173195-612x612.jpg" alt="men dev" />
+                            </PhotoView>
+                        </PhotoProvider>
                     </div>
                     <div className='flex items-center justify-around '>
                         <p className='font-bold'>Amela Nicola</p>

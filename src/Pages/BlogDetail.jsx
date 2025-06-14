@@ -68,7 +68,7 @@ const BlogDetail = () => {
                         {title}
                     </h1>
                     <div className="text-base text-gray-600 font-medium">
-                        By <span className="text-indigo-600">{author || 'DevConnect'}</span> • Published on {published_date || 'January 15, 2024'}
+                        By <span className="text-indigo-600">{author || 'DevBlog Community'}</span> • Published on {published_date || 'January 15, 2024'}
                     </div>
                     {category && (
                         <span className="inline-block bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full mt-3">
@@ -105,31 +105,48 @@ const BlogDetail = () => {
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">Comments</h2>
 
                     <div className="flex items-start mb-8 space-x-4">
-                        <div className="flex-shrink-0">
-                            <div className="avatar">
-                                <div className="ring-primary ring-offset-base-100 w-14 h-14 rounded-full ring-2 ring-offset-2">
-                                    <img
-                                        src={user?.photoURL || 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'}
-                                        alt="User Avatar"
-                                    />
+
+                        {
+                            user.uid !== uid && <div className="flex-shrink-0">
+                                <div className="avatar">
+                                    <div className="ring-primary ring-offset-base-100 w-14 h-14 rounded-full ring-2 ring-offset-2">
+                                        <img
+                                            src={user?.photoURL || 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'}
+                                            alt="User Avatar"
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        }
+
+
+
+
                         <form onSubmit={handleComment} className="flex-grow">
-                            <label htmlFor="comment-textarea" className="sr-only">Drop a comment</label>
-                            <textarea
-                                id="comment-textarea"
-                                className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-700 placeholder-gray-400"
-                                rows="4"
-                                placeholder="Add a comment..."
-                                name='cmnt'
-                                required
-                            ></textarea>
+
+                            <>
+                                {
+                                    user.uid !== uid && <>
+                                    <label htmlFor="comment-textarea" className="sr-only">Drop a comment</label>
+                                    <textarea
+                                        id="comment-textarea"
+                                        className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-700 placeholder-gray-400"
+                                        rows="4"
+                                        placeholder="Add a comment..."
+                                        name='cmnt'
+                                        required
+                                    ></textarea>
+                                    </>
+                                }
+                            </>
+
                             <div className="text-right mt-3 space-x-6">
-                                <button type='submit' className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-md cursor-pointer hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200 ease-in-out">
+
+                                {
+                                    user.uid !== uid &&<button type='submit' className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-md cursor-pointer hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200 ease-in-out">
                                     Comment
                                 </button>
-
+                                }
                                 {
                                     user.uid === uid && <Link state={{ blog: matchedBlog }} to={`/updateblog/${id}`} type='button' className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200 ease-in-out">
                                         update
@@ -137,6 +154,8 @@ const BlogDetail = () => {
                                 }
                             </div>
                         </form>
+
+
                     </div>
 
 

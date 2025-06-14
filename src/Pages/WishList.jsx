@@ -68,7 +68,7 @@ const WishList = () => {
 
     } else {
         return (
-            <div className='grid grid-cols-1 gap-5 max-w-11/12 mx-auto my-8'>
+            <div className=' grid grid-cols-1 gap-5 max-w-11/12 mx-auto my-8'>
                 {
 
                     filteredBlogs.map(blog => (

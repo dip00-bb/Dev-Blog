@@ -60,8 +60,8 @@ const SingleBlog = ({ blog }) => {
                             <span className="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white">View Details</span>
                         </Link>
 
-                        <button onClick={handleAddToWishList} class="inline-flex overflow-hidden text-white bg-cyan-800 rounded group cursor-pointer">
-                            <span class="pl-6 pr-5 py-2.5">Add to Wishlist</span>
+                        <button onClick={handleAddToWishList} className="inline-flex overflow-hidden text-white bg-cyan-800 rounded group cursor-pointer">
+                            <span className="pl-6 pr-5 py-2.5">Add to Wishlist</span>
                         </button>
                     </div>
                 </div>

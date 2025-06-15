@@ -6,8 +6,7 @@ import { useLoaderData } from 'react-router';
 const FeatureBlog = () => {
     const featureBlog = useLoaderData();
 
-    const sortedBlog = [...featureBlog].sort((a, b) => b.details.length - a.details.length);
-
+    const sortedBlog = [...featureBlog].sort((a, b) => b.details.length - a.details.length).slice(0,10);
     const columns = [
         {
             name: 'Blog Serial',
@@ -34,7 +33,7 @@ const FeatureBlog = () => {
                     ? `${row.details.slice(0, 100)}...`
                     : row.details,
             wrap: true,
-            sortable: false,
+            sortable: true,
         },
     ];
 
@@ -106,7 +105,7 @@ const FeatureBlog = () => {
                 color: '#333',
                 textAlign: 'center',
             }}>
-                📚 Featured Blogs (Sorted by Description Length)
+                📚 Featured Blogs
             </h2>
 
             <DataTable
@@ -114,7 +113,6 @@ const FeatureBlog = () => {
                 data={sortedBlog}
                 customStyles={customStyles}
                 responsive
-                pagination
                 highlightOnHover
                 striped
             />

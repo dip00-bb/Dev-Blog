@@ -1,12 +1,14 @@
-import React from 'react';
+"use client"
+
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { motion, useSpring, useScroll } from "motion/react"
 import Banner from '../Component/Banner/Banner';
 import NewsLetter from '../Component/NewsLetter/NewsLetter';
 import RecentBlog from '../Component/RecentBlog/RecentBlog';
 import OurExpert from '../Component/OurExpert/OurExpert';
 import TryOurAI from '../Component/TryAi/TryOurAI';
-"use client"
-
-import { motion, useSpring, useScroll } from "motion/react"
 
 
 
@@ -18,6 +20,9 @@ export default function Home() {
         restDelta: 0.001,
     })
 
+    useEffect(() => {
+        AOS.init({});
+    }, [])
     return (
         <>
             <motion.div
@@ -30,7 +35,7 @@ export default function Home() {
                     right: 0,
                     height: 10,
                     originX: 0,
-                    zIndex:10,
+                    zIndex: 10,
                     backgroundColor: "#ff0088",
                 }}
             />
@@ -41,12 +46,22 @@ export default function Home() {
 
 function Content() {
     return (
-        <>
-            <Banner />
-            <RecentBlog />
-            <NewsLetter />
-            <OurExpert />
-            <TryOurAI />
-        </>
+        <div>
+            <div>
+                <Banner />
+            </div>
+            <div>
+                <RecentBlog />
+            </div>
+            <div>
+                <NewsLetter />
+            </div>
+            <div>
+                <OurExpert />
+            </div>
+            <div>
+                <TryOurAI />
+            </div>
+        </div>
     )
 }

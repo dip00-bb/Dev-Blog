@@ -45,7 +45,6 @@ export const router = createBrowserRouter([
             },
             {
                 path:'blogdetails/:id',
-                loader: () => fetch('https://blog-server-three-inky.vercel.app/allblog'),
                 element: <PrivateRoute><BlogDetail/></PrivateRoute>,
                 errorElement:<ServerError/>
             },

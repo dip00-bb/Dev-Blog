@@ -8,7 +8,7 @@ const Banner = () => {
             <div className='flex-1 flex justify-center items-start flex-col gap-10'>
                 <p className='text-3xl md:text-6xl font-semibold'>Best Front-end Development Blogs You Should Follow</p>
                 <div>
-                    <HoverButton/>
+                    <HoverButton />
                 </div>
             </div>
             <div className='md:flex-1 flex justify-center items-center md:h-[50vh]'>

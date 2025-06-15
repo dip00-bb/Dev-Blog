@@ -42,7 +42,7 @@ const SingleBlog = ({ blog }) => {
 
     return (
         <div>
-            <div className="flex max-w-[90rem] mx-auto p-4 items-center justify-between space-x-4 bg-white rounded-lg shadow-sm">
+            <div className="hover:bg-gray-100 duration-300 md:hover:scale-120 flex max-w-[90rem] mx-auto p-4 items-center justify-between space-x-4 bg-white rounded-lg shadow-sm">
 
                 <div className="flex-1">
                     <p className="text-sm text-gray-500 font-medium mb-1">{category}</p>

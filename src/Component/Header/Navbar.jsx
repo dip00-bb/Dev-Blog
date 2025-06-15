@@ -41,7 +41,7 @@ const Navbar = () => {
             }
           </ul>
         </div>
-        <Link to='/' className="text-xl font-bold text-blue-500">DevBlog</Link>
+        <Link to='/' className="text-2xl font-bold text-blue-500">DevBlog</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -55,8 +55,8 @@ const Navbar = () => {
           !user ?
 
             <div className='space-x-3'>
-              <Link to='/register' className="btn hover:btn-primary">Register</Link>
-              <Link to='/login' className="btn hover:btn-primary">Login</Link>
+              <Link to='/register' className="btn hover:btn-primary border-0">Register</Link>
+              <Link to='/login' className="btn hover:btn-primary border-0">Login</Link>
             </div>
             :
             <div className='space-x-3'>

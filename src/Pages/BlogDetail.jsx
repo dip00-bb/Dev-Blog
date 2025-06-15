@@ -1,17 +1,36 @@
 import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../AuthContext/AuthContext';
-import { Link, useLoaderData, useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
 const BlogDetail = () => {
 
     const { user } = use(AuthContext);
-    const allBlogData = useLoaderData();
+    const [matchedBlog,setMatchedBlog]=useState([])
     const { id } = useParams();
 
     const [comments, setComment] = useState([])
     const [error, setError] = useState(null)
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // setLoading(true);
+                const response = await axios.get(`http://localhost:3000/allblog/${id}`, {
+                    headers: {
+                        authorization: `Bearer ${user.accessToken}`
+                    }
+                });
+                setMatchedBlog(response.data)
+            } catch (error) {
+                setError(error.message)
+            }
+        }
+
+        fetchData()
+    }, [id])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,7 +46,7 @@ const BlogDetail = () => {
         fetchData()
     }, [id, comments])
 
-    const matchedBlog = allBlogData.find(blog => blog._id === id);
+
 
     if (!matchedBlog) {
         return (
@@ -127,15 +146,15 @@ const BlogDetail = () => {
                             <>
                                 {
                                     user.uid !== uid && <>
-                                    <label htmlFor="comment-textarea" className="sr-only">Drop a comment</label>
-                                    <textarea
-                                        id="comment-textarea"
-                                        className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-700 placeholder-gray-400"
-                                        rows="4"
-                                        placeholder="Add a comment..."
-                                        name='cmnt'
-                                        required
-                                    ></textarea>
+                                        <label htmlFor="comment-textarea" className="sr-only">Drop a comment</label>
+                                        <textarea
+                                            id="comment-textarea"
+                                            className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-700 placeholder-gray-400"
+                                            rows="4"
+                                            placeholder="Add a comment..."
+                                            name='cmnt'
+                                            required
+                                        ></textarea>
                                     </>
                                 }
                             </>
@@ -143,9 +162,9 @@ const BlogDetail = () => {
                             <div className="text-right mt-3 space-x-6">
 
                                 {
-                                    user.uid !== uid &&<button type='submit' className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-md cursor-pointer hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200 ease-in-out">
-                                    Comment
-                                </button>
+                                    user.uid !== uid && <button type='submit' className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-md cursor-pointer hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200 ease-in-out">
+                                        Comment
+                                    </button>
                                 }
                                 {
                                     user.uid === uid && <Link state={{ blog: matchedBlog }} to={`/updateblog/${id}`} type='button' className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200 ease-in-out">

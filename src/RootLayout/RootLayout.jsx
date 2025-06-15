@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import Footer from '../Component/Footer/Footer';
 const RootLayout = () => {
     return (
-        <div>
+        <div className='bg-teal-50'>
             <header><Navbar/></header>
                 <Outlet/>
             <footer><Footer/></footer>

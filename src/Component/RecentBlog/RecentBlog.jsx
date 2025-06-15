@@ -34,7 +34,7 @@ const RecentBlog = () => {
 
     return (
         <div className='space-y-3.5'>
-            <h1 className='text-center text-3xl md:text-6xl font-semibold mt-9'>Recent News</h1>
+            <h1 className='text-center text-3xl md:text-6xl font-semibold mt-9 mb-8'>Recent Blog</h1>
             {/* <TypingEffect text="Recent News" /> */}
             {
                 blogs.map(blog => <SingleBlog key={blog._id} blog={blog}></SingleBlog>)

@@ -18,7 +18,7 @@ const BlogDetail = () => {
         const fetchData = async () => {
             try {
                 // setLoading(true);
-                const response = await axios.get(`http://localhost:3000/allblog/${id}`, {
+                const response = await axios.get(`https://blog-server-three-inky.vercel.app/allblog/${id}`, {
                     headers: {
                         authorization: `Bearer ${user.accessToken}`
                     }

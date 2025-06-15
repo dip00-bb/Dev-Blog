@@ -2,7 +2,6 @@ import Lottie from 'lottie-react';
 
 import HoverButton from '../HoverButton/HoverButton';
 
-import lottiranime from '../../assets/newsletter.json'
 import { toast } from 'react-toastify';
 
 
@@ -16,11 +15,11 @@ const NewsLetter = () => {
 
     return (
         <div className='max-w-11/12 mx-auto'>
-            <div className=' flex flex-col-reverse md:flex-row justify-between items-center flex-wrap md:flex-nowrap overflow-hidden'>
+            <div className=' flex flex-col-reverse md:flex-row justify-center md:justify-between items-center flex-wrap md:flex-nowrap overflow-hidden'>
                 <div className='flex flex-col gap-8'>
 
                     <div>
-                        <p className='text-3xl md:text-6xl font-semibold lg:text-center my-9'>Subscribe for latest update</p>
+                        <p className='text-3xl md:text-6xl font-semibold my-9'>Subscribe for latest update</p>
                         <form onSubmit={handleSubmit} className='space-y-2.5'>
                             <div className=''>
                                 <input
@@ -41,7 +40,7 @@ const NewsLetter = () => {
                     </div>
                 </div>
                 <div>
-                    <Lottie animationData={lottiranime} className='w-sm' loop={true} />
+                    <img className='h-96' src="./nl.png" alt="men" />
                 </div>
             </div>
         </div>

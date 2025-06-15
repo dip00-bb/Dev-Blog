@@ -20,14 +20,14 @@ const Navbar = () => {
 
 
   const { user, signout } = use(AuthContext)
-  const links = <><li><NavLink className='text-xl hover:bg-blue-300' to='/'>Home</NavLink></li>
-    <li><NavLink className='text-xl hover:bg-blue-300' to='/addblog'>Add Blog</NavLink></li>
-    <li><NavLink className='text-xl hover:bg-blue-300' to='/allblog'>All Blog</NavLink></li>
-    <li><NavLink className='text-xl hover:bg-blue-300' to='/featureblog'>Feature Blog</NavLink></li>
-    <li><NavLink className='text-xl hover:bg-blue-300' to='/wishlist'>Wishlist</NavLink></li>
+  const links = <><li><NavLink className='text-xl hover:bg-blue-100' to='/'>Home</NavLink></li>
+    <li><NavLink className='text-xl hover:bg-blue-100' to='/addblog'>Add Blog</NavLink></li>
+    <li><NavLink className='text-xl hover:bg-blue-100' to='/allblog'>All Blog</NavLink></li>
+    <li><NavLink className='text-xl hover:bg-blue-100' to='/featureblog'>Feature Blog</NavLink></li>
+    <li><NavLink className='text-xl hover:bg-blue-100' to='/wishlist'>Wishlist</NavLink></li>
   </>
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-teal-50 px-4">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -41,10 +41,10 @@ const Navbar = () => {
             }
           </ul>
         </div>
-        <Link to='/' className="text-2xl font-bold text-blue-500">DevBlog</Link>
+        <Link to='/' className="text-3xl font-bold text-blue-500 flex items-center group"><p>Dev</p> <p className='hidden group-hover:block'>Blog</p> <img className='group-hover:hidden' src="./bloglogo.png" alt="logo" /></Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal rounded-3xl px-3 shadow-sm space-x-4 hover:shadow-xl hover:shadow-teal-100">
           {
             links
           }
@@ -55,8 +55,8 @@ const Navbar = () => {
           !user ?
 
             <div className='space-x-3'>
-              <Link to='/register' className="btn hover:btn-primary border-0">Register</Link>
-              <Link to='/login' className="btn hover:btn-primary border-0">Login</Link>
+              <Link to='/register' className="btn bg-teal-300 hover:btn-primary hover:text-violet-700 border-0 rounded-3xl">Register</Link>
+              <Link to='/login' className="btn bg-teal-300 hover:btn-primary hover:text-violet-700 border-0 rounded-3xl">Login</Link>
             </div>
             :
             <div className='space-x-3'>

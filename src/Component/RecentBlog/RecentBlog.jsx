@@ -33,7 +33,7 @@ const RecentBlog = () => {
     if (error) return <ServerError />
 
     return (
-        <div className='space-y-3.5'>
+        <div className='space-y-3.5 px-6'>
             <h1 className='text-center text-3xl md:text-6xl font-semibold mt-9 mb-8'>Recent Blog</h1>
             {/* <TypingEffect text="Recent News" /> */}
             {

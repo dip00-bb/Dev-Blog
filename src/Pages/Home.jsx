@@ -46,7 +46,7 @@ export default function Home() {
 
 function Content() {
     return (
-        <div>
+        <div className='flex flex-col gap-16'>
             <div>
                 <Banner />
             </div>

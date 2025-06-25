@@ -60,13 +60,28 @@
 
 ---
 
+## 🧭 Pages & Routes  
+
+| Route               | Description                                                                 |
+|---------------------|-----------------------------------------------------------------------------|
+| `/`                 | 🏠 Home Page – Entry point of the platform showing blog highlights          |
+| `/featureblog`      | 🌟 Featured Blogs – Displays **top-rated blogs** based on content length    |
+| `/addblog`          | ➕ Add Blog (Private) – Authenticated users can **create a new blog**        |
+| `/updateblog/:id`   | ✏️ Update Blog (Private) – Edit your previously submitted blog by ID        |
+| `/allblog`          | 📚 All Blogs – View a **collection of all blogs** published by users        |
+| `/wishlist`         | ❤️ Wishlist (Private) – Shows blogs **wishlisted by the user** with links   |
+| `/blog/:id`         | 📖 Blog Details – Read the **full content** of a selected blog              |
+| `/userdetails`      | 👤 User Profile – View and update your **personal info** (private)          |
+| `/login` / `/register` | 🔐 Auth Pages – Secure login and registration via Firebase               |
+
+---
+
 ## 🛠️ Local Setup Instructions  
 
 1. **Clone the Repository**  
    ```bash
    git clone https://github.com/dip00-bb/Dev-Blog.git
    cd Dev-Blog
-
 
 
 

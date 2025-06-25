@@ -1,12 +1,31 @@
-# React + Vite
+# Project Name 
+ 
+Dev Blog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Purpose
+The purpose of our blog website is to share insightful and up-to-date information about web technology, aiming to educated and inspire developer, designer and tech enthusiasts. We cover a wide range of topic including frontend and backend development, programming language, frameworks, tools , and industry trends.Our goal is to provide valuable content that helps you grow your skills and stay ahead in the ever-evolving world of web technology.
 
-Currently, two official plugins are available:
+# Key Feature 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Our DevBlog website provide lot of feature to his user. There are some main feature of our website 
 
-## Expanding the ESLint configuration
+1. User can easily add a blog 
+2. He can update his blog 
+3. User can wishlist others blog
+4. From wishlist user can navigate the blog details page
+5. User also can delete his wishlist blog
+6. Feature blog also provide top 10 blog based on details length 
+7. We also provide firebase authentication system where user can log in themselves safely and securely 
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+# npm package
+1.React Photo View
+2.React Loading Skeleton 
+3.Lottie React  
+4.React Data Table
+
+
+
+
+# live url
+https://blog-website-724fe.web.app

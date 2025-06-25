@@ -95,6 +95,9 @@
 
   Open your browser and go to 👉 http://localhost:5173
    
+## 🙌 Thank You
 
+Thank you for visiting 🌍❤️ 
+---
 
 

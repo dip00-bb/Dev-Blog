@@ -6,12 +6,12 @@
 ---
 
 ## 📸 Screenshots  
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/7775bddb-da6e-4e64-bb74-6fdb9d6248e5" width="400"/>
-  <img src="https://github.com/user-attachments/assets/c0664ae5-9636-4b99-8b0f-193884873436" width="400"/>
-  <img src="https://github.com/user-attachments/assets/e8104594-e413-4d62-b4e8-d30ae64ceef4" width="400"/>
-  <img src="https://github.com/user-attachments/assets/5a31c969-0fd4-40de-8ad5-35649b3cb963" width="400"/>
-</div>
+
+  <img src="https://github.com/user-attachments/assets/7775bddb-da6e-4e64-bb74-6fdb9d6248e5" width="full"/>
+  <img src="https://github.com/user-attachments/assets/c0664ae5-9636-4b99-8b0f-193884873436" width="full"/>
+  <img src="https://github.com/user-attachments/assets/e8104594-e413-4d62-b4e8-d30ae64ceef4" width="full"/>
+  <img src="https://github.com/user-attachments/assets/5a31c969-0fd4-40de-8ad5-35649b3cb963" width="full"/>
+
 
 ---
 
@@ -82,6 +82,19 @@
    ```bash
    git clone https://github.com/dip00-bb/Dev-Blog.git
    cd Dev-Blog
+   
+2. **Install Dependencies**
+   ```bash
+   npm install
+
+3. **Start Development Server**
+   ```
+   npm run dev
+
+4. **Visit the App**
+
+  Open your browser and go to 👉 http://localhost:5173
+   
 
 
 

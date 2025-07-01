@@ -47,19 +47,19 @@ export default function Home() {
 function Content() {
     return (
         <div className='flex flex-col gap-16 overflow-hidden'>
-            <motion.div
+            <div
 
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 2 }}
+                // initial={{ opacity: 0, scale: 0 }}
+                // whileInView={{ opacity: 1, scale: 1 }}
+                // transition={{ duration: 2 }}
 
             >
                 <Banner />
-            </motion.div>
+            </div>
 
 
 
-            <motion.div
+            <div
 
                 initial={{ opacity: 0, translateX: "100%" }}
                 whileInView={{ opacity: 1, translateX: 0 }}
@@ -67,18 +67,18 @@ function Content() {
 
             >
                 <RecentBlog />
-            </motion.div>
+            </div>
 
 
 
-            <motion.div
+            <div
 
                 initial={{ opacity: 0, rotateX: "90deg" }}
                 whileInView={{ opacity: 1, rotateX: 0 }}
                 transition={{ duration: 2 }}
             >
                 <NewsLetter />
-            </motion.div>
+            </div>
             <div>
                 <OurExpert />
             </div>

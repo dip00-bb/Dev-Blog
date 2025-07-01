@@ -40,20 +40,23 @@ const BlogCard = ({ blog }) => {
   }
 
   return (
-    <div className="max-w-sm rounded-xl overflow-hidden shadow-xl bg-white hover:shadow-2xl transition-shadow duration-300 border border-gray-100">
+    <div className="rounded-xl overflow-hidden shadow-xl bg-white hover:shadow-2xl transition-shadow duration-300 border border-gray-100 flex flex-col">
       <img
         className="w-full h-48 object-cover"
         src={blog.image}
         alt={blog.title}
       />
-      <div className="p-5">
-        <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-indigo-500 rounded-full mb-2">
+
+
+      <div className="p-5 flex flex-col justify-between flex-1">
+        <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-indigo-500 rounded-full mb-2 w-fit">
           {blog.category}
         </span>
-        <h2 className="text-xl font-bold text-gray-800 mb-2">{blog.title}</h2>
-        <p className="text-sm text-gray-600 mb-4">{blog.short_description}</p>
 
-        <div className="flex items-center justify-between gap-2">
+        <h2 className="text-xl font-bold text-gray-800 mb-2">{blog.title}</h2>
+        <p className="text-sm text-gray-600 mb-4 line-clamp-4">{blog.short_description}</p>
+
+        <div className="flex justify-between gap-2 justify-self-end items-end ">
           <Link
             to={`/blogdetails/${blog._id}`}
             className="relative inline-flex items-center justify-start py-2.5 pl-4 pr-12 overflow-hidden font-semibold text-indigo-600 transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-blue-200 group"
@@ -82,6 +85,7 @@ const BlogCard = ({ blog }) => {
           </button>
         </div>
       </div>
+
     </div>
   );
 };

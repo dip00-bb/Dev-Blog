@@ -6,9 +6,13 @@ import Footer from '../Component/Footer/Footer';
 const RootLayout = () => {
     return (
         <div className='bg-teal-50'>
-            <header><Navbar/></header>
-                <Outlet/>
-            <footer><Footer/></footer>
+            <header className='top-0 sticky z-50'><Navbar /></header>
+
+            <div className='w-full'>
+                <Outlet />
+            </div>
+
+            <footer><Footer /></footer>
             <ToastContainer />
         </div>
     );

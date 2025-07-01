@@ -19,7 +19,7 @@ const NewsLetter = () => {
                 <div className='flex flex-col gap-8'>
 
                     <div>
-                        <p className='text-3xl md:text-6xl font-semibold my-9'>Subscribe for latest update</p>
+                        <p className='text-3xl md:text-6xl font-semibold my-9 text-blue-500'>Subscribe for latest update</p>
                         <form onSubmit={handleSubmit} className='space-y-2.5'>
                             <div className=''>
                                 <input

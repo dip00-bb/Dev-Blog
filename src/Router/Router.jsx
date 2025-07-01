@@ -13,6 +13,8 @@ import BlogDetail from "../Pages/BlogDetail";
 import UpdateBlog from "../Pages/UpdateBlog";
 import TopInTable from "../Pages/TopInTable";
 import FeatureBlog from "../Pages/FeatureBlog";
+import About from "../Pages/About";
+import Contact from "../Pages/Contact";
 
 export const router = createBrowserRouter([
     {
@@ -70,6 +72,15 @@ export const router = createBrowserRouter([
                 loader: () => fetch('https://blog-server-three-inky.vercel.app/feature_blog'),
                 element:<FeatureBlog/>,
                 errorElement:<ServerError/>
+            },
+            {
+                path:'/aboutus',
+                element:<About/>
+
+            },
+            {
+                path:'/contactus',
+                element:<Contact/>
             }
         ]
     },

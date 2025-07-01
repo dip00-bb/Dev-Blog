@@ -6,13 +6,13 @@ export default function TryOurAI() {
   return (
     <section className="max-w-11/12 mx-auto bg-gradient-to-br from-white-100 text-white py-16 px-6 lg:px-20 rounded-2xl shadow-sm my-10">
       <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-black">
+        <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-500">
           🚀 Try Our AI Assistant
         </h2>
         <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
           Need help with code, learning paths, or debugging? Let our AI assistant guide you with real-time answers tailored for developers.
         </p>
-        <a
+        <a href="https://chatgpt.com/" target="_blank"
 
           className="inline-block bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 text-white text-lg font-medium py-3 px-8 rounded-full shadow-lg hover:scale-105"
         >

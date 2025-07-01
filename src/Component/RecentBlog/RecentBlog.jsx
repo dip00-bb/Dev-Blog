@@ -4,6 +4,7 @@ import Skeleton from '../Skeleton/Skeleton';
 import SingleBlog from './SingleBlog';
 import ServerError from '../ServerError/ServerError';
 import { TypingEffect } from '../TypingEffect/TypingEffect';
+import { Link } from 'react-router';
 
 const RecentBlog = () => {
 
@@ -34,11 +35,22 @@ const RecentBlog = () => {
 
     return (
         <div className='space-y-3.5 px-6'>
-            <h1 className='text-center text-3xl md:text-6xl font-semibold mt-9 mb-8'>Recent Blog</h1>
+            <h1 className='text-center text-3xl md:text-6xl font-semibold mt-9 mb-8 text-blue-500'>Recent Blog</h1>
             {/* <TypingEffect text="Recent News" /> */}
-            {
-                blogs.map(blog => <SingleBlog key={blog._id} blog={blog}></SingleBlog>)
-            }
+            <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4'>
+                {
+                    blogs.map(blog => <SingleBlog key={blog._id} blog={blog}></SingleBlog>)
+                }
+            </div>
+
+            <div className='flex w-full justify-center'>
+                <Link
+                    className="text-black bg-blue-400 font-semibold py-3.5 px-6 duration-150 ease-in-out cursor-pointer hover:rounded-br-xl hover:rounded-tl-xl transition-all delay-200"
+                    to="/allblog"
+                >
+                    See More
+                </Link>
+            </div>
         </div>
     );
 };

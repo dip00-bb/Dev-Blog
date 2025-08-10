@@ -3,10 +3,12 @@ import { AuthContext } from '../AuthContext/AuthContext';
 import { Link, useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { ThemeContext } from '../ThemeContext/DarkLight';
 
 const BlogDetail = () => {
 
     const { user } = use(AuthContext);
+    const {textClass}=use(ThemeContext)
     const [matchedBlog,setMatchedBlog]=useState([])
     const { id } = useParams();
 
@@ -79,14 +81,14 @@ const BlogDetail = () => {
     }
 
     return (
-        <div className="bg-gray-50 min-h-screen py-12">
+        <div className="min-h-screen py-12">
             <title>{title || 'Blog Post'}</title>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <header className="text-center mb-10">
-                    <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+                    <h1 className={`text-4xl sm:text-5xl font-extrabold  leading-tight mb-4 ${textClass}`}>
                         {title}
                     </h1>
-                    <div className="text-base text-gray-600 font-medium">
+                    <div className={`text-base ${textClass} font-medium`}>
                         By <span className="text-indigo-600">{author || 'DevBlog Community'}</span> • Published on {published_date || 'January 15, 2024'}
                     </div>
                     {category && (
@@ -109,14 +111,14 @@ const BlogDetail = () => {
 
                     <p className='font-semibold text-blue-500 text-2xl my-4'>Short Description</p>
                     {short_description && (
-                        <p className="italic text-gray-600">
+                        <p className="italic text-gray-400">
                             {short_description}
                         </p>
                     )}
 
 
                     <p className='font-semibold text-blue-500 text-2xl my-4'>Description</p>
-                    <p>{details}</p>
+                    <p className={`${textClass}`}>{details}</p>
                 </article>
 
                 <section className="bg-white p-8 rounded-lg shadow-md">
@@ -198,14 +200,6 @@ const BlogDetail = () => {
                                 </div>
                             </div>
                         ))}
-
-                        {/* {comments.length > 0 && (
-                            <div className="text-center mt-8">
-                                <button className="text-indigo-600 hover:text-indigo-800 font-medium">
-                                    Load more comments
-                                </button>
-                            </div>
-                        )} */}
                     </div>
                 </section>
             </div>

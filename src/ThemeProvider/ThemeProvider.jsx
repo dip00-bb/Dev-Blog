@@ -19,6 +19,7 @@ const ThemeProvider = ({ children }) => {
         handleToggleMode
     }
 
+
     return <ThemeContext value={themeMechanism}>{children}</ThemeContext>
 };
 

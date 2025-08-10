@@ -9,7 +9,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={handleToggleMode}
-      className="sticky bottom-5 flex items-center justify-center w-18 h-10 rounded-full transition-colors "
+      className="sticky right-4 bottom-5 flex items-center justify-center w-18 h-10 rounded-full cursor-pointer transition-colors "
     >
       <AnimatePresence mode="wait" initial={false}>
         {mode === "light" ? (

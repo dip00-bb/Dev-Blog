@@ -7,6 +7,7 @@ const ThemeProvider = ({ children }) => {
     const [mode,setMode]=useState('light')
 
     const textClass=mode==="light"?"text-gray-700":"text-white"
+    const cardBackground=mode==="light"?"bg-white":"bg-gray-800"
 
     const handleToggleMode=()=>{
         if (mode==="light"){
@@ -19,7 +20,8 @@ const ThemeProvider = ({ children }) => {
     const themeMechanism={
         mode,
         handleToggleMode,
-        textClass
+        textClass,
+        cardBackground
     }
 
 

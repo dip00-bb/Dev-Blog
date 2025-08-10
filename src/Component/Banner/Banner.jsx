@@ -34,7 +34,7 @@ const Banner = () => {
                     CSS, JavaScript, frameworks, and UI/UX design.
                 </p>
                 <Link
-                    className="text-black bg-blue-400 font-semibold py-3.5 px-6 duration-150 ease-in-out cursor-pointer hover:rounded-br-xl hover:rounded-tl-xl transition-all delay-200"
+                    className={`text-black border-1 ${textClass} border-blue-400 font-semibold py-3.5 px-6 duration-150 ease-in-out cursor-pointer hover:rounded-br-xl hover:rounded-tl-xl transition-all delay-200`}
                     to="/allblog"
                 >
                     Explore More

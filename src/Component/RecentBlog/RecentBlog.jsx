@@ -1,10 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import Skeleton from '../Skeleton/Skeleton';
 import SingleBlog from './SingleBlog';
 import ServerError from '../ServerError/ServerError';
 import { TypingEffect } from '../TypingEffect/TypingEffect';
 import { Link } from 'react-router';
+import { ThemeContext } from '../../ThemeContext/DarkLight';
 
 const RecentBlog = () => {
 
@@ -12,6 +13,8 @@ const RecentBlog = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null)
 
+
+    const {textClass}=use(ThemeContext)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -45,7 +48,7 @@ const RecentBlog = () => {
 
             <div className='flex w-full justify-center'>
                 <Link
-                    className="text-black bg-blue-400 font-semibold py-3.5 px-6 duration-150 ease-in-out cursor-pointer hover:rounded-br-xl hover:rounded-tl-xl transition-all delay-200"
+                    className={`text-black border-1 ${textClass} border-blue-400 mt-5 font-semibold py-3.5 px-6 duration-150 ease-in-out cursor-pointer hover:rounded-br-xl hover:rounded-tl-xl transition-all delay-200`}
                     to="/allblog"
                 >
                     See More

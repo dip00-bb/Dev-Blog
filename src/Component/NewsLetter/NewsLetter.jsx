@@ -34,7 +34,7 @@ const NewsLetter = () => {
                             </div>
                             <button
                                 type="submit"
-                                className="text-black bg-blue-400 font-semibold py-3.5 px-6 duration-150 ease-in-out cursor-pointer hover:rounded-br-xl hover:rounded-tl-xl transition-all delay-200"
+                                className={`text-black border-1 ${textClass} border-blue-400 font-semibold py-3.5 px-6 duration-150 ease-in-out cursor-pointer hover:rounded-br-xl hover:rounded-tl-xl transition-all delay-200`}
                             >
                                 Subscribe
                             </button>

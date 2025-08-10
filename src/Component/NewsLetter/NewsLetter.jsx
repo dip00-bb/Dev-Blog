@@ -3,6 +3,8 @@ import Lottie from 'lottie-react';
 import HoverButton from '../HoverButton/HoverButton';
 
 import { toast } from 'react-toastify';
+import { use } from 'react';
+import { ThemeContext } from '../../ThemeContext/DarkLight';
 
 
 const NewsLetter = () => {
@@ -12,6 +14,7 @@ const NewsLetter = () => {
         toast('Thanks for subscribing our newsletter')
     }
 
+    const {textClass}=use(ThemeContext)
 
     return (
         <div className='px-8'>
@@ -26,7 +29,7 @@ const NewsLetter = () => {
                                     type="email"
                                     placeholder="mail@site.com"
                                     required
-                                    className="w-[90%] max-w-md p-3 border focus:outline-none  shadow-sm mr-4"
+                                    className={`w-[90%] max-w-md p-3 border focus:outline-none  shadow-sm mr-4 ${textClass}`}
                                 />
                             </div>
                             <button

@@ -1,15 +1,18 @@
 
 import * as motion from "motion/react-client"
+import { use } from "react";
+import { ThemeContext } from "../../ThemeContext/DarkLight";
 
 
 export default function TryOurAI() {
+  const {textClass}=use(ThemeContext)
   return (
     <section className=" px-8 bg-gradient-to-br from-white-100 text-white  my-10">
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-500">
           🚀 Try Our AI Assistant
         </h2>
-        <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
+        <p className={`text-lg mb-8 max-w-2xl mx-auto ${textClass}`}>
           Need help with code, learning paths, or debugging? Let our AI assistant guide you with real-time answers tailored for developers.
         </p>
         <a href="https://chatgpt.com/" target="_blank"

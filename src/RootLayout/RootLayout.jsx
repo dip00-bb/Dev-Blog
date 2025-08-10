@@ -10,7 +10,7 @@ const RootLayout = () => {
     const {mode}=use(ThemeContext)
 
     return (
-        <div className={`${mode==="light"?"bg-teal-50":"bg-gray-700"}`}>
+        <div className={`${mode==="light"?"bg-teal-50":"bg-gray-800"}`}>
             <header className='top-0 sticky z-50'><Navbar /></header>
 
             <div className='w-full'>

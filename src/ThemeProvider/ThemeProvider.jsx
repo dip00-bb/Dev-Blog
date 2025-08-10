@@ -6,6 +6,8 @@ const ThemeProvider = ({ children }) => {
 
     const [mode,setMode]=useState('light')
 
+    const textClass=mode==="light"?"text-gray-700":"text-white"
+
     const handleToggleMode=()=>{
         if (mode==="light"){
             setMode("dark")
@@ -16,7 +18,8 @@ const ThemeProvider = ({ children }) => {
 
     const themeMechanism={
         mode,
-        handleToggleMode
+        handleToggleMode,
+        textClass
     }
 
 

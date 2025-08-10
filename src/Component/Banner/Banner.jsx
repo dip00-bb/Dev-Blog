@@ -1,12 +1,16 @@
 
 
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
 import bannerImg from '../../assets/banner.png'
 import bannerBg from '../../assets/banner_bg.png'
 import { Typewriter } from 'react-simple-typewriter';
+import { ThemeContext } from '../../ThemeContext/DarkLight';
 
 const Banner = () => {
+
+    const {textClass}=use(ThemeContext)
+
     return (
         <div className="relative lg:h-[80vh] flex flex-col-reverse lg:flex-row flex-wrap md:flex-nowrap justify-between items-center gap-8"
             style={{ backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
@@ -24,7 +28,7 @@ const Banner = () => {
                         delaySpeed={1000}
                     />
                 </p>
-                <p className="text-xl text-gray-700">
+                <p className={`text-xl ${textClass}`}>
                     Discover the top front-end development blogs that every web developer should follow.
                     Stay updated with the latest trends, tools, tutorials, and expert insights in HTML,
                     CSS, JavaScript, frameworks, and UI/UX design.

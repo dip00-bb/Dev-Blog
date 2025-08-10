@@ -13,7 +13,7 @@ import { ThemeContext } from '../../ThemeContext/DarkLight';
 
 
 const OurExpert = () => {
-    const {textClass,mode}=use(ThemeContext)
+    const { textClass, mode } = use(ThemeContext)
     return (
         <div initial={{ backgroundColor: "rgb(0, 255, 0)", opacity: 0 }} whileInView={{ backgroundColor: "rgb(255, 0, 0)", opacity: 1 }} className='flex gap-5 px-8 flex-wrap lg:flex-nowrap my-10 justify-center'>
             <div className='w-2xl mx-auto lg:mx-0'>
@@ -34,8 +34,8 @@ const OurExpert = () => {
                     <div className='flex items-center justify-around '>
                         <p className={`font-bold ${textClass}`}>Sarah B. Johnson</p>
                         <div className='flex gap-3'>
-                            <FaFacebook fill={`${mode==="light"?"black":"white"}`}></FaFacebook>
-                            <FaInstagram fill={`${mode==="light"?"black":"white"}`}></FaInstagram>
+                            <a href="https://www.facebook.com/people/Sarah-Johnson-B/pfbid0zCKeyMy42B2dQs7g4iZuQa7uythAX7mMe5frNZX9mFBpZqMoSidZz8ipdv3ij4PNl/" target='_blank'><FaFacebook fill={`${mode==="light"?"black":"white"}`}></FaFacebook></a>
+                            <a href="https://www.instagram.com/sarah.b.johnson.372/" target='_blank'><FaInstagram fill={`${mode==="light"?"black":"white"}`}></FaInstagram></a>
                         </div>
                     </div>
                 </div>
@@ -51,8 +51,8 @@ const OurExpert = () => {
                     <div className='flex items-center justify-around '>
                         <p className={`font-bold ${textClass}`}>Mc Stanhum</p>
                         <div className='flex gap-3'>
-                            <FaFacebook fill={`${mode==="light"?"black":"white"}`}></FaFacebook>
-                            <FaInstagram fill={`${mode==="light"?"black":"white"}`}></FaInstagram>
+                            <a href="https://www.facebook.com/mcstanonthemic/" target='_blank'><FaFacebook fill={`${mode === "light" ? "black" : "white"}`}></FaFacebook></a>
+                            <a href="https://www.instagram.com/m___c___stan/?hl=en" target='_blank'><FaInstagram fill={`${mode === "light" ? "black" : "white"}`}></FaInstagram></a>
                         </div>
                     </div>
                 </div>
@@ -67,8 +67,8 @@ const OurExpert = () => {
                     <div className='flex items-center justify-around '>
                         <p className={`font-bold ${textClass}`}>Amela Nicola</p>
                         <div className='flex gap-3'>
-                            <FaFacebook fill={`${mode==="light"?"black":"white"}`}></FaFacebook>
-                            <FaInstagram fill={`${mode==="light"?"black":"white"}`}></FaInstagram>
+                            <a href="https://www.facebook.com/people/Nicola-Amelia/pfbid02AXfhEqbJkXomanRV1LMkaGkfPzVKhNFefJthjYnh1n3P8ojK9aStgihEzuruhJsEl/" target='_blank'><FaFacebook fill={`${mode === "light" ? "black" : "white"}`}></FaFacebook></a>
+                            <a href="https://www.instagram.com/amelie_nicola/" target='_blank'><FaInstagram fill={`${mode === "light" ? "black" : "white"}`}></FaInstagram></a>
                         </div>
                     </div>
                 </div>

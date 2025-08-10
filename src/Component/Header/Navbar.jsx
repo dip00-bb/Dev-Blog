@@ -32,7 +32,7 @@ const Navbar = () => {
     <li><NavLink to="/contactus" className=" text-xl">Contact</NavLink></li>
   </>
   return (
-    <div className="md:navbar  lg:px-10 py-3">
+    <div className="md:navbar px-2 lg:px-10 py-3">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-primary border-0 bg-gray-800 lg:hidden mr-2">
@@ -49,7 +49,7 @@ const Navbar = () => {
         <Link to='/' className="text-3xl font-bold text-blue-500 flex items-center group  "><p>Dev</p> <p className='hidden group-hover:block transition-all duration-200'>Blog</p> <img className='group-hover:hidden transition delay-700' src="./bloglogo.png" alt="logo" /></Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="py-3 menu-horizontal rounded-4xl px-4 shadow-sm space-x-4 hover:shadow-xl bg-teal-50 hover:shadow-gray-600 lg:text-xl">
+        <ul className="py-3 menu-horizontal rounded-4xl px-4 shadow-sm space-x-4 hover:shadow-sm bg-teal-50 hover:shadow-blue-400 lg:text-xl">
           {
             links
           }

@@ -13,12 +13,12 @@ import { ThemeContext } from '../../ThemeContext/DarkLight';
 
 
 const OurExpert = () => {
-    const {textClass}=use(ThemeContext)
+    const {textClass,mode}=use(ThemeContext)
     return (
         <div initial={{ backgroundColor: "rgb(0, 255, 0)", opacity: 0 }} whileInView={{ backgroundColor: "rgb(255, 0, 0)", opacity: 1 }} className='flex gap-5 px-8 flex-wrap lg:flex-nowrap my-10 justify-center'>
             <div className='w-2xl mx-auto lg:mx-0'>
                 <p className='text-3xl md:text-6xl font-bold text-blue-500 mb-2'>Learn From Our Expert</p>
-                <p className={`text-sm md:text-lg ${textClass}`}>Dive into web development with expert-led training that covers HTML, CSS, JavaScript, and modern frameworks. Gain hands-on experience building responsive websites and dynamic applications, while learning industry best practices and insider tips. Equip yourself with the skills and confidence needed to become a job-ready developer.</p>
+                <p className={`text-xl md:text-lg ${textClass}`}>Dive into web development with expert-led training that covers HTML, CSS, JavaScript, and modern frameworks. Gain hands-on experience building responsive websites and dynamic applications, while learning industry best practices and insider tips. Equip yourself with the skills and confidence needed to become a job-ready developer.</p>
             </div>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
                 <div data-aos="zoom-in-right" >
@@ -34,8 +34,8 @@ const OurExpert = () => {
                     <div className='flex items-center justify-around '>
                         <p className={`font-bold ${textClass}`}>Sarah B. Johnson</p>
                         <div className='flex gap-3'>
-                            <FaFacebook></FaFacebook>
-                            <FaInstagram></FaInstagram>
+                            <FaFacebook fill={`${mode==="light"?"black":"white"}`}></FaFacebook>
+                            <FaInstagram fill={`${mode==="light"?"black":"white"}`}></FaInstagram>
                         </div>
                     </div>
                 </div>
@@ -51,8 +51,8 @@ const OurExpert = () => {
                     <div className='flex items-center justify-around '>
                         <p className={`font-bold ${textClass}`}>Mc Stanhum</p>
                         <div className='flex gap-3'>
-                            <FaFacebook></FaFacebook>
-                            <FaInstagram></FaInstagram>
+                            <FaFacebook fill={`${mode==="light"?"black":"white"}`}></FaFacebook>
+                            <FaInstagram fill={`${mode==="light"?"black":"white"}`}></FaInstagram>
                         </div>
                     </div>
                 </div>
@@ -67,8 +67,8 @@ const OurExpert = () => {
                     <div className='flex items-center justify-around '>
                         <p className={`font-bold ${textClass}`}>Amela Nicola</p>
                         <div className='flex gap-3'>
-                            <FaFacebook></FaFacebook>
-                            <FaInstagram></FaInstagram>
+                            <FaFacebook fill={`${mode==="light"?"black":"white"}`}></FaFacebook>
+                            <FaInstagram fill={`${mode==="light"?"black":"white"}`}></FaInstagram>
                         </div>
                     </div>
                 </div>

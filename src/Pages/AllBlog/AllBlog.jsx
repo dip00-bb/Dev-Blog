@@ -20,7 +20,7 @@ const AllBlog = () => {
     const [notMatch, setNotMatch] = useState(false);
     const [searchPattern, setPattern] = useState('');
 
-    const {textClass}=use(ThemeContext)
+    const {textClass,mode}=use(ThemeContext)
 
     useEffect(() => {
         let updatedData = [...data];
@@ -79,14 +79,14 @@ const AllBlog = () => {
                 {/* Filter Dropdown */}
 
                 {/* Search Input */}
-                <div className='py-1.5 border px-2 flex items-center justify-between flex-1 rounded-sm'>
+                <div className={`py-1.5 border-1 px-2 flex items-center justify-between flex-1 rounded-sm ${mode==="dark"?"border-white":"border-black"}`}>
                     <input
                         onChange={handleSearchBlog}
                         type="text"
-                        className={`outline-0 w-[90%] ${textClass}`}
+                        className={`outline-0  w-[90%] ${textClass} `}
                         placeholder='search'
                     />
-                    <FaSearch size={15} className='cursor-pointer ' />
+                    <FaSearch fill={`${mode==="light"?"black":"white"}`} size={15} className='cursor-pointer' />
                 </div>
 
 

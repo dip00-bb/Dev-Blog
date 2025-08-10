@@ -35,7 +35,7 @@ export default function Home() {
                     right: 0,
                     height: 10,
                     originX: 0,
-                    zIndex: 10,
+                    zIndex: 60,
                     backgroundColor: "#ff0088",
                 }}
             />

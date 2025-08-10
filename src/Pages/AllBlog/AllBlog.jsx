@@ -1,14 +1,17 @@
 
 
 
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { FaArrowDown, FaSearch } from 'react-icons/fa';
 import { useLoaderData } from 'react-router';
 import BlogCard from './BlogCard';
 import axios from 'axios';
 import NotMatch from '../../Component/NotMatch/NotMatch';
+import { ThemeContext } from '../../ThemeContext/DarkLight';
 
 const AllBlog = () => {
+
+
     const data = useLoaderData();
 
     const [category, setCategory] = useState('All');
@@ -16,6 +19,8 @@ const AllBlog = () => {
     const [blogData, setBlogData] = useState([]);
     const [notMatch, setNotMatch] = useState(false);
     const [searchPattern, setPattern] = useState('');
+
+    const {textClass}=use(ThemeContext)
 
     useEffect(() => {
         let updatedData = [...data];
@@ -78,7 +83,7 @@ const AllBlog = () => {
                     <input
                         onChange={handleSearchBlog}
                         type="text"
-                        className='outline-0 w-[90%]'
+                        className={`outline-0 w-[90%] ${textClass}`}
                         placeholder='search'
                     />
                     <FaSearch size={15} className='cursor-pointer ' />

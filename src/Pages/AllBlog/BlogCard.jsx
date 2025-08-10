@@ -3,11 +3,13 @@ import { Link } from 'react-router';
 import { AuthContext } from '../../AuthContext/AuthContext';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { ThemeContext } from '../../ThemeContext/DarkLight';
 
 const BlogCard = ({ blog }) => {
 
 
   const {user}=use(AuthContext)
+  const {textClass,cardBackground}=use(ThemeContext)
 
   const handleAddToWishList = () => {
 
@@ -40,7 +42,7 @@ const BlogCard = ({ blog }) => {
   }
 
   return (
-    <div className="rounded-xl overflow-hidden shadow-xl bg-white hover:shadow-2xl transition-shadow duration-300 border border-gray-100 flex flex-col">
+    <div className={`rounded-xl overflow-hidden shadow-xl ${cardBackground} hover:shadow-2xl transition-shadow duration-300 border border-gray-100 flex flex-col`}>
       <img
         className="w-full h-48 object-cover"
         src={blog.image}
@@ -53,8 +55,8 @@ const BlogCard = ({ blog }) => {
           {blog.category}
         </span>
 
-        <h2 className="text-xl font-bold text-gray-800 mb-2">{blog.title}</h2>
-        <p className="text-sm text-gray-600 mb-4 line-clamp-4">{blog.short_description}</p>
+        <h2 className={`text-xl font-bold ${textClass} mb-2`}>{blog.title}</h2>
+        <p className="text-sm text-gray-500 mb-4 line-clamp-4">{blog.short_description}</p>
 
         <div className="flex justify-between gap-2 justify-self-end items-end ">
           <Link

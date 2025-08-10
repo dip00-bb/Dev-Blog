@@ -32,7 +32,7 @@ const Navbar = () => {
     <li><NavLink to="/contactus" className=" text-xl">Contact</NavLink></li>
   </>
   return (
-    <div className="md:navbar bg-gray-900 lg:px-24 py-3">
+    <div className="md:navbar  lg:px-10 py-3">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-primary border-0 bg-gray-800 lg:hidden mr-2">
@@ -46,7 +46,7 @@ const Navbar = () => {
             }
           </ul>
         </div>
-        <Link to='/' className="text-3xl font-bold text-blue-500 flex items-center group  "><p>Dev</p> <p className='hidden group-hover:block transition-all duration-200'>Blog</p> <img className='group-hover:hidden' src="./bloglogo.png" alt="logo" /></Link>
+        <Link to='/' className="text-3xl font-bold text-blue-500 flex items-center group  "><p>Dev</p> <p className='hidden group-hover:block transition-all duration-200'>Blog</p> <img className='group-hover:hidden transition delay-700' src="./bloglogo.png" alt="logo" /></Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="py-3 menu-horizontal rounded-4xl px-4 shadow-sm space-x-4 hover:shadow-xl bg-teal-50 hover:shadow-gray-600 lg:text-xl">
@@ -60,19 +60,19 @@ const Navbar = () => {
           !user ?
 
             <div className='space-x-3'>
-              <Link to='/register' className="btn bg-indigo-600 hover:text-white border-0 rounded-3xl lg:text-xl ">Register</Link>
-              <Link to='/login' className="btn bg-indigo-600  hover:text-white border-0 rounded-3xl lg:text-xl ">Login</Link>
+              <Link to='/register' className="btn bg-indigo-600 hover:text-white border-0  lg:text-xl ">Register</Link>
+              <Link to='/login' className="btn bg-indigo-600  hover:text-white border-0  lg:text-xl ">Login</Link>
             </div>
             :
             <div className='space-x-3'>
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full relative">
+                <div className="w-16 rounded-full relative">
                   <img
                     alt='not provide'
                     src={user.photoURL} />
                 </div>
               </div>
-              <button onClick={handleLogOut} className="btn hover:btn-primary lg:text-xl lg:py-6">Logout</button>
+              <button onClick={handleLogOut} className="btn hover:btn-primary lg:text-xl lg:py-5">Logout</button>
             </div>
         }
       </div>

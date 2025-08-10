@@ -122,7 +122,7 @@ const SingleBlog = ({ blog }) => {
     };
 
     return (
-        <div className="p-4">
+        <div data-aos="zoom-in" className="p-4">
             <div className="bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition duration-300 max-w-md mx-auto flex flex-col h-full">
                 <img
                     src={image}

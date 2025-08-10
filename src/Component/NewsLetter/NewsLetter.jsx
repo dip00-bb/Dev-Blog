@@ -14,7 +14,7 @@ const NewsLetter = () => {
 
 
     return (
-        <div className='max-w-11/12 mx-auto'>
+        <div className='px-8'>
             <div className=' flex flex-col-reverse md:flex-row justify-center md:justify-between items-center flex-wrap md:flex-nowrap overflow-hidden'>
                 <div className='flex flex-col gap-8'>
 
@@ -39,7 +39,7 @@ const NewsLetter = () => {
                         </form>
                     </div>
                 </div>
-                <div>
+                <div data-aos="fade-up">
                     <img className='h-96' src="./nl.png" alt="men" />
                 </div>
             </div>

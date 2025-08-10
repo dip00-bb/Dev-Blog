@@ -34,12 +34,12 @@ const RecentBlog = () => {
     if (error) return <ServerError />
 
     return (
-        <div className='space-y-3.5 px-6'>
+        <div className='px-6'>
             <h1 className='text-center text-3xl md:text-6xl font-semibold mt-9 mb-8 text-blue-500'>Recent Blog</h1>
-            {/* <TypingEffect text="Recent News" /> */}
+
             <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4'>
                 {
-                    blogs.map(blog => <SingleBlog key={blog._id} blog={blog}></SingleBlog>)
+                    blogs.map(blog => <SingleBlog  key={blog._id} blog={blog}></SingleBlog>)
                 }
             </div>
 

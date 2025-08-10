@@ -46,7 +46,7 @@ export default function Home() {
 
 function Content() {
     return (
-        <div className='flex flex-col gap-16 overflow-hidden'>
+        <div className='flex flex-col overflow-hidden'>
             <div
 
                 // initial={{ opacity: 0, scale: 0 }}

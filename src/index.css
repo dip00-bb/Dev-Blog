@@ -1,13 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 @import "tailwindcss";
-@plugin "daisyui"; 
+@plugin "daisyui";
 
 
-.active{
-    color:blue
+.active {
+    color: blue
 }
 
-*{
+* {
     font-family: "Roboto", sans-serif;
+}
+
+.button-text {
+    font-size: clamp(0.625rem, 0.5382rem + 0.3731vw, 1rem);
 }

@@ -32,7 +32,7 @@ const Navbar = () => {
     <li><NavLink to="/contactus" className=" text-xl">Contact</NavLink></li>
   </>
   return (
-    <div className="md:navbar px-2 lg:px-10 py-3">
+    <div className="md:navbar px-2 bg-gray-800 lg:px-10 py-3">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-primary border-0 bg-gray-800 lg:hidden mr-2">

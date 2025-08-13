@@ -58,13 +58,13 @@ const SingleBlog = ({ blog }) => {
                 <div className="px-4 pb-4 mt-auto flex flex-wrap gap-3">
                     <Link
                         to={`blogdetails/${_id}`}
-                        className="flex-1 text-center bg-blue-500 hover:bg-blue-600 text-white text-[12px] md:text-sm lg:text-xl px-4 py-3 rounded-md transition"
+                        className="flex-1 text-center bg-blue-500 hover:bg-blue-600 text-white text-[12px] md:text-sm lg:text-[1rem] px-1 py-3 rounded-md transition"
                     >
                         View Details
                     </Link>
                     <button
                         onClick={handleAddToWishList}
-                        className="flex-1 text-center bg-cyan-800 hover:bg-cyan-700 text-white text-[12px] md:text-sm lg:text-xl px-4 py-3 rounded-md transition"
+                        className="flex-1 text-center bg-cyan-800 hover:bg-cyan-700 text-white text-[12px] md:text-sm lg:text-[1rem] px-1 py-3 rounded-md transition"
                     >
                         Add to Wishlist
                     </button>

@@ -30,13 +30,17 @@ const AddBlog = () => {
     const category = blogCategory;
     const uid = user.uid;
     const blogData = { title, image, short_description, details, category, uid };
-    axios.post('https://blog-server-three-inky.vercel.app/blog/addblog', { blogData }, {
+
+
+    axios.post('http://localhost:3000/blog/addblog', { blogData }, {
 
       headers: {
         Authorization: `Bearer ${user.accessToken}`
       }
     })
       .then(res => {
+        console.log(res.data)
+        console.log(res.data.acknowledged)
         if (res.data.acknowledged) {
           form.reset()
           Swal.fire({

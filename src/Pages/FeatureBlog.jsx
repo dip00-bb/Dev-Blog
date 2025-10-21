@@ -15,7 +15,7 @@ const FeatureBlog = () => {
     const columns = [
         {
             name: "Blog Serial",
-            selector: (row) => row._id,
+            selector: (row) => row.id,
             sortable: true,
             wrap: true,
         },

@@ -8,7 +8,7 @@ import axios from 'axios';
 import { ThemeContext } from '../../ThemeContext/DarkLight';
 
 const SingleBlog = ({ blog }) => {
-    const { category, title, short_description, image, _id } = blog;
+    const { category, title, short_description, image, id } = blog;
     const { user } = use(AuthContext);
     const {textClass,cardBackground}=use(ThemeContext)
 
@@ -19,14 +19,14 @@ const SingleBlog = ({ blog }) => {
         }
 
         axios
-            .get(`https://blog-server-three-inky.vercel.app/user/wishlist?email=${user.email}&blogId=${_id}`)
+            .get(`http://localhost:3000/user/wishlist?email=${user.email}&blogId=${id}`)
             .then((response) => {
                 if (response.data.exist) {
                     toast.warn("Already in wishlist");
                 } else {
-                    const wishlistInformation = { email: user.email, blogId: _id };
+                    const wishlistInformation = { email: user.email, blogId: id };
                     axios
-                        .post(`https://blog-server-three-inky.vercel.app/user/wishlist`, { wishlistInformation })
+                        .post(`http://localhost:3000/user/wishlist`, { wishlistInformation })
                         .then((response) => {
                             if (response.status === 200) toast.success("Added in wishlist successfully");
                         })
@@ -57,7 +57,7 @@ const SingleBlog = ({ blog }) => {
 
                 <div className="px-4 pb-4 mt-auto flex flex-wrap gap-3">
                     <Link
-                        to={`blogdetails/${_id}`}
+                        to={`blogdetails/${id}`}
                         className="flex-1 text-center bg-blue-500 hover:bg-blue-600 text-white button-text px-1 py-3 rounded-md transition"
                     >
                         View Details

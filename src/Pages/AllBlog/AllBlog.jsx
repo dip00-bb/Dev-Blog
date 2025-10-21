@@ -57,7 +57,7 @@ const AllBlog = () => {
             return;
         }
 
-        const response = await axios.get(`https://blog-server-three-inky.vercel.app/search/${pattern}`);
+        const response = await axios.get(`http://localhost:3000/search/${pattern}`);
         const resData = response.data;
         if (resData.length === 0) {
             setNotMatch(true);
@@ -124,7 +124,7 @@ const AllBlog = () => {
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 place-items-stretch'>
                 {
-                    blogData.map(blog => <BlogCard key={blog._id} blog={blog} />)
+                    blogData.map(blog => <BlogCard key={blog.id} blog={blog} />)
                 }
             </div>
 

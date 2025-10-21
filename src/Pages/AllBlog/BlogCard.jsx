@@ -18,14 +18,15 @@ const BlogCard = ({ blog }) => {
       return
     }
 
+    console.log("sended bloddddddd",blog)
 
-    axios.get(`https://blog-server-three-inky.vercel.app/user/wishlist?email=${user.email}&blogId=${blog._id}`)
+    axios.get(`http://localhost:3000/user/wishlist?email=${user.email}&blogId=${blog.id}`)
       .then(function (response) {
         if (response.data.exist) {
           toast.warn("Already in wishlist")
         } else {
-          const wishlistInformation = { email: user.email, blogId: blog._id }
-          axios.post(`https://blog-server-three-inky.vercel.app/user/wishlist`, { wishlistInformation })
+          const wishlistInformation = { email: user.email, blogId: "x" }
+          axios.post(`http://localhost:3000/user/wishlist`, { wishlistInformation })
             .then(function (response) {
               if (response.status === 200) toast.success("Added in wishlist successfully")
             })
@@ -60,7 +61,7 @@ const BlogCard = ({ blog }) => {
 
         <div className="flex justify-between gap-3 justify-self-end items-end ">
           <Link
-            to={`/blogdetails/${blog._id}`}
+            to={`/blogdetails/${blog.id}`}
             className=" text-center bg-blue-500 hover:bg-blue-600 text-white button-text px-3 py-3 rounded-md transition "
             // className="relative inline-flex items-center justify-start  px-3 py-3 overflow-hidden font-semibold text-indigo-600 transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-blue-200 group"
           >

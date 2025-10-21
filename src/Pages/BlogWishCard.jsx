@@ -5,7 +5,7 @@ import { AuthContext } from "../AuthContext/AuthContext";
 const BlogWishCard = ({ blog, handleDeleteWishList,filteredBlogs,setFilterdBlog }) => {
 
     const {user}=use(AuthContext)
-  const { _id, image, title } = blog;
+  const { id, image, title } = blog;
 
   return (
     <div className="flex items-center justify-between p-2 border rounded-lg shadow-sm bg-white hover:shadow-md transition-shadow duration-300">
@@ -23,7 +23,7 @@ const BlogWishCard = ({ blog, handleDeleteWishList,filteredBlogs,setFilterdBlog 
       <div className="flex gap-3 flex-col">
 
         <Link
-          to={`/blogdetails/${_id}`}
+          to={`/blogdetails/${id}`}
           className="relative inline-flex items-center justify-start py-2 pl-4 pr-12 overflow-hidden font-semibold text-indigo-600 transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-blue-200 group"
         >
           <span className="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-indigo-300 group-hover:bg-indigo-500 group-hover:h-full"></span>
@@ -44,7 +44,7 @@ const BlogWishCard = ({ blog, handleDeleteWishList,filteredBlogs,setFilterdBlog 
 
 
         <button
-          onClick={() => handleDeleteWishList(_id,user.email,filteredBlogs,setFilterdBlog)}
+          onClick={() => handleDeleteWishList(id,user.email,filteredBlogs,setFilterdBlog)}
           className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600 transition cursor-pointer"
         >
           Delete

@@ -20,7 +20,7 @@ const RecentBlog = () => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('https://blog-server-three-inky.vercel.app/recent_blog');
+                const response = await axios.get('http://localhost:3000/recent_blog');
                 setBlog(response.data)
             } catch (error) {
                 setError(error.message)
@@ -42,7 +42,7 @@ const RecentBlog = () => {
 
             <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4'>
                 {
-                    blogs.map(blog => <SingleBlog  key={blog._id} blog={blog}></SingleBlog>)
+                    blogs.map(blog => <SingleBlog  key={blog.id} blog={blog}></SingleBlog>)
                 }
             </div>
 

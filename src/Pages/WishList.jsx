@@ -17,7 +17,7 @@ import { toast } from 'react-toastify';
 const WishList = () => {
 
     const handleDeleteWishList = (id, email, filteredBlogs, setFilterdBlog) => {
-        axios.delete(`https://blog-server-three-inky.vercel.app/user/userWishlist/?id=${id}&email=${email}`)
+        axios.delete(`http://localhost:3000/user/userWishlist/?id=${id}&email=${email}`)
             .then(response => {
 
                 if (response.data.deletedCount) {
@@ -27,7 +27,7 @@ const WishList = () => {
                         draggable: true
                     });
 
-                    const reamingWishList = filteredBlogs.filter(blog => blog._id !== id);
+                    const reamingWishList = filteredBlogs.filter(blog => blog.id !== id);
                     setFilterdBlog(reamingWishList)
 
                 } else {
@@ -59,7 +59,7 @@ const WishList = () => {
 
     useEffect(() => {
         const wishlistedBlogIds = wishlistData.map(item => item.blogId);
-        const filtered = allBlog.filter(blog => wishlistedBlogIds.includes(blog._id));
+        const filtered = allBlog.filter(blog => wishlistedBlogIds.includes(blog.id));
         setFilterdBlog(filtered);
     }, [allBlog,wishlistData]);
 
@@ -72,7 +72,7 @@ const WishList = () => {
                 {
 
                     filteredBlogs.map(blog => (
-                        <BlogWishCard key={blog._id} blog={blog} filteredBlogs={filteredBlogs} handleDeleteWishList={handleDeleteWishList} setFilterdBlog={setFilterdBlog} />
+                        <BlogWishCard key={blog.id} blog={blog} filteredBlogs={filteredBlogs} handleDeleteWishList={handleDeleteWishList} setFilterdBlog={setFilterdBlog} />
                     ))
 
                 }

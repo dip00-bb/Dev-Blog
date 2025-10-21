@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
             {
                 path: 'allblog',
                 Component: AllBlog,
-                loader: () => fetch('https://blog-server-three-inky.vercel.app/allblog'),
+                loader: () => fetch('http://localhost:3000/allblog'),
                 errorElement:<ServerError/>            
             },
             {
@@ -63,13 +63,13 @@ export const router = createBrowserRouter([
             },
             {
                 path:'wishlist',
-                loader: () => fetch('https://blog-server-three-inky.vercel.app/allblog'),
+                loader: () => fetch('http://localhost:3000/allblog'),
                 element:<PrivateRoute><WishList></WishList></PrivateRoute>,
                 errorElement:<ServerError/>
             },
             {
                 path:'featureblog',
-                loader: () => fetch('https://blog-server-three-inky.vercel.app/feature_blog'),
+                loader: () => fetch('http://localhost:3000/feature_blog'),
                 element:<FeatureBlog/>,
                 errorElement:<ServerError/>
             },

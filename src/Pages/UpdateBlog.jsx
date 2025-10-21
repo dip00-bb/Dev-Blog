@@ -40,7 +40,10 @@ const UpdateBlog = () => {
         const category = blogCategory;
         const uid = user.uid;
         const blogData = { uid, title, image, short_description, category, details, };
-        axios.put(`https://blog-server-three-inky.vercel.app/blog/updateblog/${id}`, { blogData }, {
+
+
+        
+        axios.put(`http://localhost:3000/blog/updateblog/${id}`, { blogData }, {
             headers: {
                 Authorization: `Bearer ${user.accessToken}`
             }

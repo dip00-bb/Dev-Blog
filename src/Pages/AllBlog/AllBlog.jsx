@@ -122,7 +122,7 @@ const AllBlog = () => {
 
             {notMatch && <NotMatch pattern={searchPattern} />}
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 place-items-stretch'>
+            <div className='grid grid-cols-1 md:grid-cols-4 gap-5 place-items-stretch'>
                 {
                     blogData.map(blog => <BlogCard key={blog.id} blog={blog} />)
                 }

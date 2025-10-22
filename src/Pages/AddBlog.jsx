@@ -18,13 +18,16 @@ const AddBlog = () => {
   const [blogCategory, setCategory] = useState('Js framework');
   const [imagePreview, setImagePreview] = useState('');
 
+  const [description, setDescription] = useState('dddddddd');
+  console.log(description)
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
     const image = form.imageUrl.value;
     const short_description = form.shortDesc.value;
-    const details = form.desc.value;
+    const details = description;
     const category = blogCategory;
     const uid = user.uid;
     const blogData = { title, image, short_description, details, category, uid };
@@ -49,6 +52,12 @@ const AddBlog = () => {
       })
       .catch(error => toast.warn(error));
   };
+
+
+  const getDescription = (e) => {
+    const descValue = e.target.value;
+    setDescription(descValue);
+  }
 
   const getCategory = e => {
     const categoryValue = e.target.value;
@@ -189,6 +198,8 @@ const AddBlog = () => {
                 </div>
                 <textarea
                   name="desc"
+                  onChange={(e) => getDescription(e)}
+                  value={description}
                   className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-neutral-50 dark:bg-neutral-700 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 resize-none text-sm sm:text-base"
                   rows="8"
                   placeholder="Share your detailed thoughts, insights, and knowledge..."

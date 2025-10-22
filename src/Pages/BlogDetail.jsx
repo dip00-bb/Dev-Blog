@@ -10,6 +10,13 @@ const BlogDetail = () => {
     const { textClass } = use(ThemeContext);
     const [matchedBlog, setMatchedBlog] = useState([]);
     const { id } = useParams();
+    const [isSummarized, setIsSummarized] = useState(false);
+    const [summary, setSummary] = useState("");
+
+
+
+
+
 
     const [comments, setComment] = useState([]);
     const [error, setError] = useState(null);
@@ -44,6 +51,25 @@ const BlogDetail = () => {
         fetchData();
     }, [id, comments]);
 
+
+
+
+
+
+
+    const handleSummarize = async () => {
+        if (!isSummarized) {
+            const response = await axios.post('http://localhost:3000/blogsummary', { text: matchedBlog?.details })
+            console.log("the summary is",response.data.generatedSummary);
+        } else {
+            setIsSummarized(false);
+        }
+    };
+
+
+
+
+
     if (!matchedBlog) {
         return (
             <div className="flex items-center justify-center min-h-screen">
@@ -54,6 +80,12 @@ const BlogDetail = () => {
             </div>
         );
     }
+
+
+
+
+
+
 
     const { title, image, short_description, category, details, author, published_date, uid } = matchedBlog;
 
@@ -76,10 +108,12 @@ const BlogDetail = () => {
         }
     };
 
+
+
     return (
         <div className="min-h-screen bg-gradient-to-b">
             <title>{title || 'Blog Post'}</title>
-            
+
             {/* Hero Section */}
             <div className="relative w-full h-[50vh] sm:h-[60vh] lg:h-[70vh] overflow-hidden">
                 <img
@@ -88,7 +122,7 @@ const BlogDetail = () => {
                     className="w-full h-full object-cover opacity-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-                
+
                 {/* Title Overlay */}
                 <div className="absolute inset-0 flex items-end">
                     <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 lg:pb-16">
@@ -133,9 +167,18 @@ const BlogDetail = () => {
                 {/* Main Content */}
                 <article className="mb-12 sm:mb-16">
                     <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none">
-                        <p className={`text-base sm:text-lg lg:text-xl leading-relaxed whitespace-pre-line ${textClass} text-gray-800`}>
-                            {details}
+                        <p
+                            className={`text-base sm:text-lg lg:text-xl leading-relaxed whitespace-pre-line ${textClass} text-gray-800`}
+                        >
+                            {isSummarized ? summary : details}
                         </p>
+
+                        <button
+                            onClick={handleSummarize}
+                            className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition"
+                        >
+                            {isSummarized ? "Show Full Text" : "Summarize Text"}
+                        </button>
                     </div>
                 </article>
 
@@ -180,7 +223,7 @@ const BlogDetail = () => {
                                             className="w-10 h-10 sm:w-12 sm:h-12 rounded-full ring-2 ring-indigo-500 ring-offset-2 ring-offset-white dark:ring-offset-neutral-800 object-cover"
                                         />
                                     </div>
-                                    
+
                                     <form onSubmit={handleComment} className="flex-1">
                                         <div className="relative">
                                             <textarea

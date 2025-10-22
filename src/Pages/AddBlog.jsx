@@ -53,10 +53,28 @@ const AddBlog = () => {
       .catch(error => toast.warn(error));
   };
 
-
+  // get the description from textarea
   const getDescription = (e) => {
     const descValue = e.target.value;
     setDescription(descValue);
+  }
+
+
+  const handleWriteWithAI = async () => {
+    console.log("Write with AI button clicked", description);
+
+    try {
+      if (!description) {
+        alert("Please enter some initial content to help the AI generate the blog.");
+        return;
+      } else {
+        const response = await axios.post('http://localhost:3000/writerai', { description })
+        console.log(response)
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const getCategory = e => {
@@ -68,6 +86,7 @@ const AddBlog = () => {
     const url = e.target.value;
     setImagePreview(url);
   };
+
 
   return (
     <div className="min-h-screen py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
@@ -187,6 +206,7 @@ const AddBlog = () => {
                     Full Content
                   </label>
                   <button
+                    onClick={handleWriteWithAI}
                     type="button"
                     className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-xs sm:text-sm font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105"
                   >
@@ -199,7 +219,7 @@ const AddBlog = () => {
                 <textarea
                   name="desc"
                   onChange={(e) => getDescription(e)}
-                  value={description}
+                  defaultValue={description}
                   className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-neutral-50 dark:bg-neutral-700 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 resize-none text-sm sm:text-base"
                   rows="8"
                   placeholder="Share your detailed thoughts, insights, and knowledge..."

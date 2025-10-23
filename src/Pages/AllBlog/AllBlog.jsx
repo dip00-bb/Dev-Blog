@@ -16,7 +16,6 @@ const AllBlog = () => {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isSortOpen, setIsSortOpen] = useState(false);
 
-    const { textClass, mode } = use(ThemeContext);
 
     const categories = [
         'All',

@@ -3,6 +3,7 @@ import { use, useState } from "react";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { Sparkles } from "lucide-react";
 
 const AddBlog = () => {
   const categories = [
@@ -18,8 +19,8 @@ const AddBlog = () => {
   const [blogCategory, setCategory] = useState('Js framework');
   const [imagePreview, setImagePreview] = useState('');
 
-  const [description, setDescription] = useState('dddddddd');
-  console.log(description)
+  const [description, setDescription] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,8 +30,9 @@ const AddBlog = () => {
     const short_description = form.shortDesc.value;
     const details = description;
     const category = blogCategory;
-    const uid = user.uid;
+    const uid = user?.uid;
     const blogData = { title, image, short_description, details, category, uid };
+
 
     axios.post('http://localhost:3000/blog/addblog', { blogData }, {
       headers: {
@@ -65,11 +67,15 @@ const AddBlog = () => {
 
     try {
       if (!description) {
-        alert("Please enter some initial content to help the AI generate the blog.");
+        toast("Please Provide Some Text")
         return;
       } else {
+        setIsLoading(true)
         const response = await axios.post('http://localhost:3000/writerai', { description })
-        console.log(response)
+        setDescription("")
+        setDescription(response?.data?.generatedText);
+        setIsLoading(false)
+
       }
 
     } catch (error) {
@@ -205,21 +211,29 @@ const AddBlog = () => {
                     </svg>
                     Full Content
                   </label>
+
+
                   <button
                     onClick={handleWriteWithAI}
                     type="button"
-                    className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-xs sm:text-sm font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105"
+                    disabled={isLoading}
+                    className={`flex items-center gap-2 px-3 sm:px-4 py-2 
+    bg-gradient-to-r from-purple-500 to-pink-500 
+    hover:from-purple-600 hover:to-pink-600 
+    text-white text-xs sm:text-sm font-semibold 
+    rounded-lg shadow-md hover:shadow-lg 
+    transition-all duration-200 transform hover:scale-105 
+    ${isLoading ? "opacity-70 cursor-not-allowed" : ""}`}
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                    Write with AI
+                    <Sparkles className="w-4 h-4" />
+                    {isLoading ? "Writing..." : "Write with AI"}
                   </button>
+
                 </div>
                 <textarea
                   name="desc"
                   onChange={(e) => getDescription(e)}
-                  defaultValue={description}
+                  value={description}
                   className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-neutral-50 dark:bg-neutral-700 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 resize-none text-sm sm:text-base"
                   rows="8"
                   placeholder="Share your detailed thoughts, insights, and knowledge..."
@@ -246,16 +260,6 @@ const AddBlog = () => {
               </div>
             </form>
           </div>
-        </div>
-
-        {/* Helper Text */}
-        <div className="mt-8 text-center">
-          <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400">
-            Need help? Check out our
-            <span className="text-indigo-600 dark:text-indigo-400 font-semibold ml-1 cursor-pointer hover:underline">
-              writing guidelines
-            </span>
-          </p>
         </div>
       </div>
     </div>

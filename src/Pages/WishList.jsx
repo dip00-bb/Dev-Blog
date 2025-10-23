@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 
 const WishList = () => {
     const handleDeleteWishList = (id, email, filteredBlogs, setFilterdBlog) => {
-        axios.delete(`http://localhost:3000/user/userWishlist/?id=${id}&email=${email}`)
+        axios.delete(`https://blog-server-three-inky.vercel.app/user/userWishlist/?id=${id}&email=${email}`)
             .then(response => {
                 if (response.data.count) {
                     Swal.fire({

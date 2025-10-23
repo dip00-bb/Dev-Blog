@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { use } from 'react';
 import { X, Lock, Crown, Check } from 'lucide-react';
+import { AuthContext } from '../../AuthContext/AuthContext';
+import axiosPublic from '../../axios/useAxiosPublic';
 
 const SubscriptionModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
@@ -9,7 +11,18 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
             onClose();
         }
     };
+    const { user } = use(AuthContext)
 
+    const handleSubscribe = async () => {
+        const customerInformation = {
+            name: user.displayName,
+            userId: user?.uid,
+            amountPaid: "500",
+        }
+
+        const response = await axiosPublic.post('https://blog-server-three-inky.vercel.app/payment/create-checkout-session', customerInformation);
+        window.location.href = response.data.url;
+    }
     return (
         <div
             className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in duration-200"
@@ -61,28 +74,19 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
                 {/* Action Buttons */}
                 <div className="space-y-3">
                     <button
+                        onClick={handleSubscribe}
                         className="w-full py-3 px-6
                             bg-gradient-to-r from-purple-500 to-pink-500
                             hover:from-purple-600 hover:to-pink-600
                             text-white font-semibold rounded-lg
                             shadow-lg hover:shadow-xl
                             transition-all duration-200 transform hover:scale-105
-                            flex items-center justify-center gap-2"
+                            flex items-center justify-center gap-2 cursor-pointer"
                     >
                         <Crown className="w-5 h-5" />
-                        <span>Subscribe Now</span>
+                        <span>Subscribe With Only 500</span>
                     </button>
 
-                    <button
-                        className="w-full py-3 px-6
-                            bg-white dark:bg-gray-700
-                            hover:bg-gray-50 dark:hover:bg-gray-600
-                            text-purple-600 dark:text-purple-400 font-semibold
-                            border-2 border-purple-500
-                            rounded-lg transition-all duration-200"
-                    >
-                        Sign In
-                    </button>
                 </div>
 
             </div>

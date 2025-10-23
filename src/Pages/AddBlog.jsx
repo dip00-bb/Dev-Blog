@@ -34,7 +34,7 @@ const AddBlog = () => {
     const blogData = { title, image, short_description, details, category, uid };
 
 
-    axios.post('http://localhost:3000/blog/addblog', { blogData }, {
+    axios.post('https://blog-server-three-inky.vercel.app/blog/addblog', { blogData }, {
       headers: {
         Authorization: `Bearer ${user.accessToken}`
       }
@@ -71,7 +71,7 @@ const AddBlog = () => {
         return;
       } else {
         setIsLoading(true)
-        const response = await axios.post('http://localhost:3000/writerai', { description })
+        const response = await axios.post('https://blog-server-three-inky.vercel.app/writerai', { description })
         setDescription("")
         setDescription(response?.data?.generatedText);
         setIsLoading(false)

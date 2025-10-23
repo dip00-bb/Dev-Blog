@@ -20,7 +20,7 @@ const BlogCard = ({ blog }) => {
       setIsCheckingWishlist(true);
       try {
         const response = await axios.get(
-          `http://localhost:3000/user/wishlist?email=${user.email}&blogId=${blog.id}`
+          `https://blog-server-three-inky.vercel.app/user/wishlist?email=${user.email}&blogId=${blog.id}`
         );
         setIsWishlisted(response.data.exist);
       } catch (error) {
@@ -41,7 +41,7 @@ const BlogCard = ({ blog }) => {
 
     try {
       const response = await axios.get(
-        `http://localhost:3000/user/wishlist?email=${user.email}&blogId=${blog.id}`
+        `https://blog-server-three-inky.vercel.app/user/wishlist?email=${user.email}&blogId=${blog.id}`
       );
       
       if (response.data.exist) {
@@ -50,7 +50,7 @@ const BlogCard = ({ blog }) => {
       } else {
         const wishlistInformation = { email: user.email, blogId: blog.id };
         const addResponse = await axios.post(
-          `http://localhost:3000/user/wishlist`,
+          `https://blog-server-three-inky.vercel.app/user/wishlist`,
           { wishlistInformation }
         );
         

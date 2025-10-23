@@ -34,7 +34,7 @@ const UpdateBlog = () => {
         const uid = user.uid;
         const blogData = { uid, title, image, short_description, category, details };
 
-        axios.put(`http://localhost:3000/blog/updateblog/${id}`, { blogData }, {
+        axios.put(`https://blog-server-three-inky.vercel.app/blog/updateblog/${id}`, { blogData }, {
             headers: {
                 Authorization: `Bearer ${user.accessToken}`
             }
@@ -184,15 +184,6 @@ const UpdateBlog = () => {
                                         </svg>
                                         Full Content
                                     </label>
-                                    <button
-                                        type="button"
-                                        className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white text-xs sm:text-sm font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105"
-                                    >
-                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                        </svg>
-                                        Write with AI
-                                    </button>
                                 </div>
                                 <textarea
                                     name="desc"

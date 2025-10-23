@@ -29,7 +29,7 @@ const BlogDetail = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/allblog/${id}?email=${user.email}`, {
+                const response = await axios.get(`https://blog-server-three-inky.vercel.app/allblog/${id}?email=${user.email}`, {
                     headers: {
                         authorization: `Bearer ${user.accessToken}`
                     }
@@ -50,7 +50,7 @@ const BlogDetail = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/blog/comment/${id}`);
+                const response = await axios.get(`https://blog-server-three-inky.vercel.app/blog/comment/${id}`);
                 setComment(response.data);
             } catch (error) {
                 setError(error.message);
@@ -140,12 +140,12 @@ const BlogDetail = () => {
             author: user.displayName
         };
 
-        axios.post('http://localhost:3000/blog/comment', { commentorInfo })
+        axios.post('https://blog-server-three-inky.vercel.app/blog/comment', { commentorInfo })
             .then(() => {
                 toast.success("Comment posted successfully!");
                 form.reset();
                 // Refresh comments
-                axios.get(`http://localhost:3000/blog/comment/${id}`)
+                axios.get(`https://blog-server-three-inky.vercel.app/blog/comment/${id}`)
                     .then(res => setComment(res.data));
             })
             .catch(() => {

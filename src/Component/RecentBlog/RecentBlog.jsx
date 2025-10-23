@@ -20,7 +20,7 @@ const RecentBlog = () => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('http://localhost:3000/recent_blog');
+                const response = await axios.get('https://blog-server-three-inky.vercel.app/recent_blog');
                 setBlog(response.data)
             } catch (error) {
                 setError(error.message)

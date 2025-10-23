@@ -68,7 +68,7 @@ const AllBlog = () => {
             return;
         }
 
-        const response = await axios.get(`http://localhost:3000/search/${pattern}`);
+        const response = await axios.get(`https://blog-server-three-inky.vercel.app/search/${pattern}`);
         const resData = response.data;
         if (resData.length === 0) {
             setNotMatch(true);

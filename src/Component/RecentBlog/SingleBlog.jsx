@@ -19,14 +19,14 @@ const SingleBlog = ({ blog }) => {
         }
 
         axios
-            .get(`http://localhost:3000/user/wishlist?email=${user.email}&blogId=${id}`)
+            .get(`https://blog-server-three-inky.vercel.app/user/wishlist?email=${user.email}&blogId=${id}`)
             .then((response) => {
                 if (response.data.exist) {
                     toast.warn("Already in wishlist");
                 } else {
                     const wishlistInformation = { email: user.email, blogId: id };
                     axios
-                        .post(`http://localhost:3000/user/wishlist`, { wishlistInformation })
+                        .post(`https://blog-server-three-inky.vercel.app/user/wishlist`, { wishlistInformation })
                         .then((response) => {
                             if (response.status === 200) toast.success("Added in wishlist successfully");
                         })

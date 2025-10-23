@@ -7,7 +7,7 @@ const ThemeProvider = ({ children }) => {
     // Initialize mode from localStorage or default to 'light'
     const [mode, setMode] = useState(() => {
         if (typeof window !== "undefined") {
-            return localStorage.getItem("mode") || "light";
+            return localStorage.getItem("mode") || "dark";
         }
         return "light"; // fallback for SSR or initial render
     });

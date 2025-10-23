@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import BlogCard from './BlogCard';
 import axios from 'axios';
@@ -94,11 +94,11 @@ const AllBlog = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900 py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
 
                 {/* Search and Filter Bar */}
-                <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-lg p-4 sm:p-6 mb-8">
+                <div className="bg-gray-800 rounded-2xl shadow-lg p-4 sm:p-6 mb-8">
                     <div className="flex flex-col lg:flex-row gap-4">
                         {/* Search Input */}
                         <div className="flex-1">

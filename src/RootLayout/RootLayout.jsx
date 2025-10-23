@@ -15,7 +15,7 @@ const RootLayout = () => {
 
             <div className='w-full'>
                 <Outlet />
-                <ThemeToggle className="place-content-center"/>
+                {/* <ThemeToggle className="place-content-center"/> */}
             </div>
 
             <footer><Footer /></footer>

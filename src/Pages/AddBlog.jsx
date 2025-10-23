@@ -104,7 +104,7 @@ const AddBlog = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
             </svg>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-white">
             Create New Blog
           </h1>
           <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
@@ -113,7 +113,7 @@ const AddBlog = () => {
         </div>
 
         {/* Form Card */}
-        <div className="bg-white dark:bg-neutral-800 rounded-3xl shadow-2xl overflow-hidden">
+        <div className="bg-gray-900 rounded-3xl shadow-2xl overflow-hidden">
           <div className="p-6 sm:p-8 lg:p-12">
             <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
               {/* Title Input */}
@@ -127,7 +127,7 @@ const AddBlog = () => {
                 <input
                   type="text"
                   name="title"
-                  className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-neutral-50 dark:bg-neutral-700 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
+                  className="w-full px-4 sm:px-5 py-3 sm:py-4  border-2  rounded-xl border-neutral-600 text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                   placeholder="Enter an engaging title for your blog..."
                   required
                 />
@@ -145,7 +145,7 @@ const AddBlog = () => {
                   type="url"
                   name="imageUrl"
                   onChange={handleImageUrlChange}
-                  className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-neutral-50 dark:bg-neutral-700 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
+                  className="w-full px-4 sm:px-5 py-3 sm:py-4 border-2  border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                   placeholder="https://example.com/image.jpg"
                   required
                 />
@@ -174,7 +174,7 @@ const AddBlog = () => {
                 <select
                   name="category"
                   onChange={getCategory}
-                  className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-neutral-50 dark:bg-neutral-700 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 cursor-pointer text-sm sm:text-base"
+                  className="w-full px-4 sm:px-5 py-3 sm:py-4 border-2 border-neutral-200 dark:border-neutral-600 bg-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 cursor-pointer text-sm sm:text-base"
                 >
                   {categories.map((cat, index) => (
                     <option key={index} value={cat}>{cat}</option>
@@ -192,7 +192,7 @@ const AddBlog = () => {
                 </label>
                 <textarea
                   name="shortDesc"
-                  className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-neutral-50 dark:bg-neutral-700 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 resize-none text-sm sm:text-base"
+                  className="w-full px-4 sm:px-5 py-3 sm:py-4  border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 resize-none text-sm sm:text-base"
                   rows="3"
                   placeholder="Write a brief summary that captures the essence of your blog..."
                   required
@@ -234,7 +234,7 @@ const AddBlog = () => {
                   name="desc"
                   onChange={(e) => getDescription(e)}
                   value={description}
-                  className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-neutral-50 dark:bg-neutral-700 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 resize-none text-sm sm:text-base"
+                  className="w-full px-4 sm:px-5 py-3 sm:py-4  border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 resize-none text-sm sm:text-base"
                   rows="8"
                   placeholder="Share your detailed thoughts, insights, and knowledge..."
                   required

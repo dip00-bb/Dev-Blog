@@ -73,7 +73,7 @@ const UpdateBlog = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                         </svg>
                     </div>
-                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 mb-3 sm:mb-4">
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">
                         Update Your Blog
                     </h1>
                     <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
@@ -82,7 +82,7 @@ const UpdateBlog = () => {
                 </div>
 
                 {/* Form Card */}
-                <div className="bg-white dark:bg-neutral-800 rounded-3xl shadow-2xl overflow-hidden">
+                <div className=" bg-gray-900 rounded-3xl shadow-2xl overflow-hidden">
                     <div className="p-6 sm:p-8 lg:p-12">
                         <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
                             {/* Title Input */}
@@ -97,7 +97,7 @@ const UpdateBlog = () => {
                                     type="text"
                                     name="title"
                                     defaultValue={title}
-                                    className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-neutral-50 dark:bg-neutral-700 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
+                                    className="w-full px-4 sm:px-5 py-3 sm:py-4  border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                                     placeholder="Enter an engaging title for your blog..."
                                     required
                                 />
@@ -116,7 +116,7 @@ const UpdateBlog = () => {
                                     name="imageUrl"
                                     defaultValue={image}
                                     onChange={handleImageUrlChange}
-                                    className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-neutral-50 dark:bg-neutral-700 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
+                                    className="w-full px-4 sm:px-5 py-3 sm:py-4 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                                     placeholder="https://example.com/image.jpg"
                                     required
                                 />
@@ -165,7 +165,7 @@ const UpdateBlog = () => {
                                 <textarea
                                     name="shortDesc"
                                     defaultValue={short_description}
-                                    className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-neutral-50 dark:bg-neutral-700 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 resize-none text-sm sm:text-base"
+                                    className="w-full px-4 sm:px-5 py-3 sm:py-4 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 resize-none text-sm sm:text-base"
                                     rows="3"
                                     placeholder="Write a brief summary that captures the essence of your blog..."
                                     required
@@ -197,7 +197,7 @@ const UpdateBlog = () => {
                                 <textarea
                                     name="desc"
                                     defaultValue={details}
-                                    className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-neutral-50 dark:bg-neutral-700 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 resize-none text-sm sm:text-base"
+                                    className="w-full px-4 sm:px-5 py-3 sm:py-4 border-2 border-neutral-200 dark:border-neutral-600 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 resize-none text-sm sm:text-base"
                                     rows="8"
                                     placeholder="Share your detailed thoughts, insights, and knowledge..."
                                     required

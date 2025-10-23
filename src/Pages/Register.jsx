@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
 import { use, useState } from "react";
+import axios from "axios";
+import axiosPublic from "../axios/useAxiosPublic";
 
 export default function Register() {
 
@@ -13,9 +15,19 @@ export default function Register() {
 
   const handleGoogleLogIn = () => {
     googleLogin().then((result) => {
+
+      const user = result.user
       setUser(result.user)
       // console.log(result.user)
-      toast("Registration Successful")
+
+      axiosPublic.post('/save-user', { userId: user?.uid })
+        .then(() => {
+          toast("Registration Successful");
+          navigate('/')
+        }).catch((err) => {
+          toast(err);
+        })
+
       navigate('/')
     }).catch(error => {
       toast.warn(error.message)
@@ -52,7 +64,7 @@ export default function Register() {
       return true;
     }
 
-    return false; 
+    return false;
   };
 
 
@@ -77,7 +89,14 @@ export default function Register() {
 
           setUser({ ...user, displayName: userName, photoURL: userPhotoURL });
           toast("Registration Successful");
-          navigate('/')
+
+          axiosPublic.post('/save-user', user?.uid)
+            .then(() => {
+              toast("Registration Successful");
+              navigate('/')
+            }).catch((err) => {
+              toast(err);
+            })
 
         }).catch(error => {
           setUser(user)

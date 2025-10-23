@@ -1,3 +1,4 @@
+
 import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../AuthContext/AuthContext';
 import { Link, useParams } from 'react-router';
@@ -6,18 +7,25 @@ import axios from 'axios';
 import { ThemeContext } from '../ThemeContext/DarkLight';
 import CommentsSection from '../Component/BlogComments/CommentsSection';
 import { Sparkles, AlertCircle, Edit, Calendar, User } from 'lucide-react';
+import axiosPublic from '../axios/useAxiosPublic';
+import { checkPremiumUser } from '../utils/blog-details';
+import SubscriptionModal from '../Component/SubscriptionModal/SubscriptionModal';
 
 const BlogDetail = () => {
     const { user } = use(AuthContext);
+    const userId = user?.uid;
     const { textClass } = use(ThemeContext);
-    const [matchedBlog, setMatchedBlog] = useState([]);
+    const [matchedBlog, setMatchedBlog] = useState(null);
     const { id } = useParams();
     const [isSummarized, setIsSummarized] = useState(false);
     const [summary, setSummary] = useState("");
     const [isLoadingSummary, setIsLoadingSummary] = useState(false);
     const [comments, setComment] = useState([]);
     const [error, setError] = useState(null);
+    const [isPremiumUser, setPremiumUser] = useState(false);
+    const [showPremiumModal, setPremiumModal] = useState(false);
 
+    // Fetch blog data
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -26,15 +34,19 @@ const BlogDetail = () => {
                         authorization: `Bearer ${user.accessToken}`
                     }
                 });
-                setMatchedBlog(response.data);
+                setMatchedBlog(response?.data);
             } catch (error) {
-                setError(error.message);
+                setError(error?.message);
+                toast.error("Failed to load blog post");
             }
         };
 
-        fetchData();
-    }, [id]);
+        if (user?.email) {
+            fetchData();
+        }
+    }, [id, user]);
 
+    // Fetch comments
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -46,17 +58,48 @@ const BlogDetail = () => {
         };
 
         fetchData();
-    }, [id, comments]);
+    }, [id]);
+
+    // Check premium status
+    useEffect(() => {
+        const checkPremiumStatus = async () => {
+            if (!userId) return;
+            
+            try {
+                const userStatus = await checkPremiumUser(userId);
+                setPremiumUser(userStatus);
+            } catch (error) {
+                console.error("Failed to check premium status:", error);
+                setPremiumUser(false);
+            }
+        };
+
+        checkPremiumStatus();
+    }, [userId]);
 
     const handleSummarize = async () => {
-        if (!isSummarized) {
+        // Check if user is premium
+        if (!isPremiumUser) {
+            setPremiumModal(true);
+            return;
+        }
+
+        // Toggle between summary and full text
+        if (isSummarized) {
+            setIsSummarized(false);
+            return;
+        }
+
+        // Generate summary if not already generated
+        if (!summary) {
             setIsLoadingSummary(true);
             try {
-                const response = await axios.post('http://localhost:3000/blogsummary', { 
-                    text: matchedBlog?.details 
+                const response = await axiosPublic.post('/blogsummary', {
+                    text: matchedBlog?.details
                 });
                 setSummary(response.data.generatedSummary);
                 setIsSummarized(true);
+                toast.success("Summary generated!");
             } catch (error) {
                 toast.error("Failed to generate summary");
                 console.error(error);
@@ -64,10 +107,53 @@ const BlogDetail = () => {
                 setIsLoadingSummary(false);
             }
         } else {
-            setIsSummarized(false);
+            setIsSummarized(true);
         }
     };
 
+    const handleComment = (e) => {
+        e.preventDefault();
+        
+        if (!user) {
+            toast.error("Please sign in to comment");
+            return;
+        }
+
+        if (user.uid === matchedBlog?.uid) {
+            toast.warning("Owner cannot comment on their own blog");
+            return;
+        }
+
+        const form = e.target;
+        const comment = form.cmnt.value;
+
+        if (!comment.trim()) {
+            toast.warning("Please enter a comment");
+            return;
+        }
+
+        const commentorInfo = {
+            comment,
+            blogID: id,
+            commentorProfile: user.photoURL,
+            commentorEmail: user.email,
+            author: user.displayName
+        };
+
+        axios.post('http://localhost:3000/blog/comment', { commentorInfo })
+            .then(() => {
+                toast.success("Comment posted successfully!");
+                form.reset();
+                // Refresh comments
+                axios.get(`http://localhost:3000/blog/comment/${id}`)
+                    .then(res => setComment(res.data));
+            })
+            .catch(() => {
+                toast.error("Failed to post comment");
+            });
+    };
+
+    // Loading state
     if (!matchedBlog) {
         return (
             <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800">
@@ -81,35 +167,15 @@ const BlogDetail = () => {
 
     const { title, image, short_description, category, details, author, published_date, uid } = matchedBlog;
 
-    const handleComment = (e) => {
-        e.preventDefault();
-        if (user.uid === uid) {
-            toast.warning("Owner cannot comment on their own blog");
-            return;
-        } else {
-            const form = e.target;
-            const comment = form.cmnt.value;
-            const blogID = id;
-            const commentorEmail = user.email;
-            const commentorProfile = user.photoURL;
-            const author = user.displayName;
-
-            const commentorInfo = { comment, blogID, commentorProfile, commentorEmail, author };
-
-            axios.post('http://localhost:3000/blog/comment', { commentorInfo })
-                .then(() => {
-                    toast.success("Comment posted successfully!");
-                    form.reset();
-                })
-                .catch(() => {
-                    toast.error("Failed to post comment");
-                });
-        }
-    };
-
     return (
         <div className="min-h-screen">
             <title>{title || 'Blog Post'}</title>
+
+            {/* Subscription Modal */}
+            <SubscriptionModal 
+                isOpen={showPremiumModal} 
+                onClose={() => setPremiumModal(false)} 
+            />
 
             {/* Hero Section */}
             <div className="relative w-full h-[50vh] sm:h-[60vh] lg:h-[70vh] overflow-hidden">
@@ -148,10 +214,10 @@ const BlogDetail = () => {
             {/* Main Content Container */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-                    
+
                     {/* Blog Content - Left Column */}
                     <div className="lg:col-span-2 space-y-6 sm:space-y-8">
-                        
+
                         {/* Short Description Card */}
                         {short_description && (
                             <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 border-l-4 border-indigo-500 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -163,13 +229,13 @@ const BlogDetail = () => {
 
                         {/* Main Article Card */}
                         <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 border border-neutral-200 dark:border-neutral-700">
-                            
+
                             {/* Summarize Button */}
                             <div className="flex justify-end mb-6">
                                 <button
                                     onClick={handleSummarize}
                                     disabled={isLoadingSummary}
-                                    className="flex items-center gap-2 px-3 sm:px-4 py-2 
+                                    className="cursor-pointer flex items-center gap-2 px-3 sm:px-4 py-2 
                                         bg-gradient-to-r from-purple-500 to-pink-500 
                                         hover:from-purple-600 hover:to-pink-600 
                                         disabled:from-purple-400 disabled:to-pink-400
@@ -210,7 +276,7 @@ const BlogDetail = () => {
                             </article>
 
                             {/* Update Button for Owner */}
-                            {user.uid === uid && (
+                            {user?.uid === uid && (
                                 <div className="mt-8 pt-8 border-t border-neutral-200 dark:border-neutral-700">
                                     <Link
                                         state={{ blog: matchedBlog }}
@@ -231,7 +297,7 @@ const BlogDetail = () => {
                             </h2>
 
                             {/* Owner Warning */}
-                            {user.uid === uid ? (
+                            {user?.uid === uid ? (
                                 <div className="p-4 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-l-4 border-amber-500 rounded-r-xl">
                                     <div className="flex items-start gap-3">
                                         <AlertCircle className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />

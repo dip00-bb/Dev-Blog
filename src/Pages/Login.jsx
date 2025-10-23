@@ -27,18 +27,6 @@ export default function Login() {
             }).catch(error => toast.error(error.message))
     }
 
-
-    const handleSignInWithGoogle = () => {
-        googleLogin()
-            .then(result => {
-                setUser(result.user);
-                navigate(`${location.state ? location.state : '/'}`)
-                toast.success("Login Successful")
-
-            })
-            .catch(error => toast.warn(error.message))
-    }
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-white px-4">
       <motion.div
@@ -102,14 +90,14 @@ export default function Login() {
               </p>
             </div>
 
-            <div className="relative mt-4 text-center">
+            {/* <div className="relative mt-4 text-center">
               <span className="text-gray-400 text-sm">Or Sign in with</span>
               <div className="mt-2 flex justify-center space-x-4">
                 <button onClick={handleSignInWithGoogle} type="button" className="bg-white p-3 rounded-lg shadow hover:shadow-md transition cursor-pointer">
                   <FaGoogle className="text-red-500" />
                 </button>
               </div>
-            </div>
+            </div> */}
           </form>
         </motion.div>
       </motion.div>

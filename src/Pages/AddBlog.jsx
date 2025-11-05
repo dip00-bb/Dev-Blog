@@ -4,6 +4,7 @@ import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { Sparkles } from "lucide-react";
+import axiosPublic from "../axios/useAxiosPublic";
 
 const AddBlog = () => {
   const categories = [
@@ -34,17 +35,16 @@ const AddBlog = () => {
     const blogData = { title, image, short_description, details, category, uid };
 
 
-    axios.post('https://blog-server-three-inky.vercel.app/blog/addblog', { blogData }, {
+    axiosPublic.post('/blog/addblog', { blogData }, {
       headers: {
         Authorization: `Bearer ${user.accessToken}`
       }
     })
       .then(res => {
-        console.log(res.data);
-        console.log(res.data.acknowledged);
         if (res.data.acknowledged) {
           form.reset();
           setImagePreview('');
+          setDescription("")
           Swal.fire({
             title: 'Blog added successfully',
             icon: "success",
@@ -63,7 +63,6 @@ const AddBlog = () => {
 
 
   const handleWriteWithAI = async () => {
-    console.log("Write with AI button clicked", description);
 
     try {
       if (!description) {
@@ -71,7 +70,7 @@ const AddBlog = () => {
         return;
       } else {
         setIsLoading(true)
-        const response = await axios.post('https://blog-server-three-inky.vercel.app/writerai', { description })
+        const response = await axiosPublic.post('/writerai', { description })
         setDescription("")
         setDescription(response?.data?.generatedText);
         setIsLoading(false)
@@ -79,7 +78,8 @@ const AddBlog = () => {
       }
 
     } catch (error) {
-      console.log(error)
+      setIsLoading(false)
+      toast.warn(error)
     }
   }
 

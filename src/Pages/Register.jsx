@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
 import { use, useState } from "react";
-import axios from "axios";
 import axiosPublic from "../axios/useAxiosPublic";
 
 export default function Register() {
@@ -14,18 +13,19 @@ export default function Register() {
   const { googleLogin, setUser, registerUser, updateUser } = use(AuthContext);
 
   const handleGoogleLogIn = () => {
+
+    console.log("this is hitted")
     googleLogin().then((result) => {
 
       const user = result.user
       setUser(result.user)
-      // console.log(result.user)
 
       axiosPublic.post('/save-user', { userId: user?.uid })
         .then(() => {
           toast("Registration Successful");
           navigate('/')
         }).catch((err) => {
-          toast(err);
+          toast.warn(err);
         })
 
       navigate('/')
@@ -90,7 +90,7 @@ export default function Register() {
           setUser({ ...user, displayName: userName, photoURL: userPhotoURL });
           toast("Registration Successful");
 
-          axiosPublic.post('/save-user', user?.uid)
+          axiosPublic.post('/save-user', { userId: user?.uid })
             .then(() => {
               toast("Registration Successful");
               navigate('/')
@@ -128,7 +128,7 @@ export default function Register() {
           <h2 className="text-3xl font-bold mb-2">
             Sign up to <span className="text-indigo-600">Manage</span> Awesome Stuffs
           </h2>
-          <p className="font-bold text-gray-800 mt-2">
+          <p className="font-bold text-white mt-2">
             If you already have an account, you can{" "}
             <Link to="/login" className="text-blue-600 underline">
               login here

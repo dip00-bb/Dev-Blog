@@ -8,7 +8,7 @@ import { AuthContext } from "../AuthContext/AuthContext";
 
 export default function Login() {
 
-  const {googleLogin,setUser,userLogIn}=use(AuthContext);
+  const {setUser,userLogIn}=use(AuthContext);
 
 
     const navigate = useNavigate();
@@ -28,12 +28,12 @@ export default function Login() {
     }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-800 px-4">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex flex-col-reverse md:flex-row max-w-4xl w-full bg-white rounded-lg overflow-hidden items-center"
+        className="flex flex-col-reverse md:flex-row max-w-4xl w-full rounded-lg overflow-hidden items-center"
       >
 
         <motion.div
@@ -45,7 +45,7 @@ export default function Login() {
           <h2 className="text-3xl font-bold mb-2">
             Welcome Back to <span className="text-indigo-600">Manage</span> Awesome Stuffs
           </h2>
-          <p className="font-bold mt-2">
+          <p className="font-bold mt-2 text-white">
             Don't have an account?{" "}
             <Link to="/register" className="text-blue-600 underline">
               Sign up here

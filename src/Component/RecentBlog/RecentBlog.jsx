@@ -6,6 +6,7 @@ import ServerError from '../ServerError/ServerError';
 import { TypingEffect } from '../TypingEffect/TypingEffect';
 import { Link } from 'react-router';
 import { ThemeContext } from '../../ThemeContext/DarkLight';
+import axiosPublic from '../../axios/useAxiosPublic';
 
 const RecentBlog = () => {
 
@@ -20,7 +21,7 @@ const RecentBlog = () => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('https://blog-server-three-inky.vercel.app/recent_blog');
+                const response = await axiosPublic.get('/recent_blog');
                 setBlog(response.data)
             } catch (error) {
                 setError(error.message)

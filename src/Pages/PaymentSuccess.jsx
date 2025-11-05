@@ -1,37 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { CheckCircle, Copy, Check } from 'lucide-react';
-import { useSearchParams } from 'react-router';
+import { Link, useSearchParams } from 'react-router';
 import axiosPublic from '../axios/useAxiosPublic';
+import { toast } from 'react-toastify';
 
 export default function PaymentSuccess() {
   const [copied, setCopied] = useState(false);
 
-  const [customerInfor, setCustomerInfo] = useState({})
+  const [customerInfo, setCustomerInfo] = useState({})
 
   const [searchParams] = useSearchParams();
   const session_id = searchParams.get("session_id");
 
-
-  const paymentData = {
-    name: "John Doe",
-    amount: "$149.99",
-    sessionId: "sess_1a2b3c4d5e6f7g8h9i0j"
-  };
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(paymentData.sessionId);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
 
   useEffect(() => {
     if (session_id) {
       axiosPublic.get(`/session/${session_id}`)
         .then((res) => setCustomerInfo(res?.data?.metadata))
-        .catch((err) => console.log(err));
+        .catch((err) => toast.warn(err));
     }
   }, [session_id]);
+
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(session_id);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+
 
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4 py-8">
@@ -60,7 +58,7 @@ export default function PaymentSuccess() {
                 Customer Name
               </label>
               <div className="bg-gray-900 rounded-lg px-4 py-3 border border-gray-700">
-                <p className="text-white text-lg font-medium">{customerInfor.name}</p>
+                <p className="text-white text-lg font-medium">{customerInfo.name}</p>
               </div>
             </div>
 
@@ -70,7 +68,7 @@ export default function PaymentSuccess() {
                 Amount Paid
               </label>
               <div className="bg-gray-900 rounded-lg px-4 py-3 border border-gray-700">
-                <p className="text-green-400 text-2xl font-bold">{customerInfor.amountPaid}</p>
+                <p className="text-green-400 text-2xl font-bold">{customerInfo.amountPaid}</p>
               </div>
             </div>
 
@@ -105,9 +103,9 @@ export default function PaymentSuccess() {
             </div>
 
             {/* Action Button */}
-            <button className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-green-500/20 mt-4">
-              Return to Dashboard
-            </button>
+            <Link to='/' className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-green-500/20 mt-4">
+              Start Reading
+            </Link>
           </div>
         </div>
 
@@ -118,5 +116,5 @@ export default function PaymentSuccess() {
       </div>
     </div>
   );
-} 
+}
 

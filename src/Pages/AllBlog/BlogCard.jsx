@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { ThemeContext } from '../../ThemeContext/DarkLight';
 import { Heart, Eye, Bookmark } from 'lucide-react';
+import axiosPublic from '../../axios/useAxiosPublic';
 
 const BlogCard = ({ blog }) => {
   const { user } = use(AuthContext);
@@ -19,12 +20,12 @@ const BlogCard = ({ blog }) => {
       
       setIsCheckingWishlist(true);
       try {
-        const response = await axios.get(
-          `https://blog-server-three-inky.vercel.app/user/wishlist?email=${user.email}&blogId=${blog.id}`
+        const response = await axiosPublic.get(
+          `/user/wishlist?email=${user.email}&blogId=${blog.id}`
         );
         setIsWishlisted(response.data.exist);
       } catch (error) {
-        console.error('Error checking wishlist status:', error);
+        toast.warn('Error checking wishlist status:', error);
       } finally {
         setIsCheckingWishlist(false);
       }
@@ -40,8 +41,8 @@ const BlogCard = ({ blog }) => {
     }
 
     try {
-      const response = await axios.get(
-        `https://blog-server-three-inky.vercel.app/user/wishlist?email=${user.email}&blogId=${blog.id}`
+      const response = await axiosPublic.get(
+        `/user/wishlist?email=${user.email}&blogId=${blog.id}`
       );
       
       if (response.data.exist) {
@@ -49,8 +50,8 @@ const BlogCard = ({ blog }) => {
         setIsWishlisted(true);
       } else {
         const wishlistInformation = { email: user.email, blogId: blog.id };
-        const addResponse = await axios.post(
-          `https://blog-server-three-inky.vercel.app/user/wishlist`,
+        const addResponse = await axiosPublic.post(
+          `/user/wishlist`,
           { wishlistInformation }
         );
         

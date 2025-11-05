@@ -5,13 +5,13 @@ import { AuthContext } from '../AuthContext/AuthContext';
 import { useLoaderData } from 'react-router';
 import BlogWishCard from './BlogWishCard';
 import EmptyWishList from './EmptyWishList';
-import axios from 'axios';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import axiosPublic from '../axios/useAxiosPublic';
 
 const WishList = () => {
     const handleDeleteWishList = (id, email, filteredBlogs, setFilterdBlog) => {
-        axios.delete(`https://blog-server-three-inky.vercel.app/user/userWishlist/?id=${id}&email=${email}`)
+        axiosPublic.delete(`/user/userWishlist/?id=${id}&email=${email}`)
             .then(response => {
                 if (response.data.count) {
                     Swal.fire({
@@ -49,7 +49,7 @@ const WishList = () => {
                 setIsLoading(false);
             })
             .catch(error => {
-                console.error(error);
+                toast.warn(error);
                 setIsLoading(false);
             });
     }, [user.email]);

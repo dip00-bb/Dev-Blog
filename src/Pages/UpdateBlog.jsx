@@ -4,6 +4,7 @@ import { AuthContext } from '../AuthContext/AuthContext';
 import { useLocation, useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import axiosPublic from '../axios/useAxiosPublic';
 
 const UpdateBlog = () => {
     const location = useLocation();
@@ -34,7 +35,7 @@ const UpdateBlog = () => {
         const uid = user.uid;
         const blogData = { uid, title, image, short_description, category, details };
 
-        axios.put(`https://blog-server-three-inky.vercel.app/blog/updateblog/${id}`, { blogData }, {
+        axiosPublic.put(`/blog/updateblog/${id}`, { blogData }, {
             headers: {
                 Authorization: `Bearer ${user.accessToken}`
             }

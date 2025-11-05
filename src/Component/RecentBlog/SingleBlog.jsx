@@ -6,6 +6,7 @@ import { AuthContext } from '../../AuthContext/AuthContext';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { ThemeContext } from '../../ThemeContext/DarkLight';
+import axiosPublic from '../../axios/useAxiosPublic';
 
 const SingleBlog = ({ blog }) => {
     const { category, title, short_description, image, id } = blog;
@@ -18,15 +19,15 @@ const SingleBlog = ({ blog }) => {
             return;
         }
 
-        axios
-            .get(`https://blog-server-three-inky.vercel.app/user/wishlist?email=${user.email}&blogId=${id}`)
+        axiosPublic
+            .get(`/user/wishlist?email=${user.email}&blogId=${id}`)
             .then((response) => {
                 if (response.data.exist) {
                     toast.warn("Already in wishlist");
                 } else {
                     const wishlistInformation = { email: user.email, blogId: id };
-                    axios
-                        .post(`https://blog-server-three-inky.vercel.app/user/wishlist`, { wishlistInformation })
+                    axiosPublic
+                        .post(`/user/wishlist`, { wishlistInformation })
                         .then((response) => {
                             if (response.status === 200) toast.success("Added in wishlist successfully");
                         })

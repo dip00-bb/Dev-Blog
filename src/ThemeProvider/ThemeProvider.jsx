@@ -9,7 +9,7 @@ const ThemeProvider = ({ children }) => {
         if (typeof window !== "undefined") {
             return localStorage.getItem("mode") || "dark";
         }
-        return "light"; // fallback for SSR or initial render
+        return "dark"; // fallback for SSR or initial render
     });
 
     // Sync localStorage and <html> class when mode changes
@@ -24,7 +24,7 @@ const ThemeProvider = ({ children }) => {
     }, [mode]);
 
     const textClass = mode === "light" ? "text-gray-700" : "text-white";
-    const cardBackground = mode === "light" ? "bg-white" : "bg-gray-800";
+    const cardBackground = mode === "light" ? "bg-gray-800" : "bg-gray-800";
 
     const handleToggleMode = () => {
         setMode((prev) => (prev === "light" ? "dark" : "light"));

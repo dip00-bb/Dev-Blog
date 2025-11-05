@@ -4,6 +4,7 @@ import BlogCard from './BlogCard';
 import axios from 'axios';
 import NotMatch from '../../Component/NotMatch/NotMatch';
 import { ThemeContext } from '../../ThemeContext/DarkLight';
+import axiosPublic from '../../axios/useAxiosPublic';
 
 const AllBlog = () => {
     const data = useLoaderData();
@@ -68,7 +69,7 @@ const AllBlog = () => {
             return;
         }
 
-        const response = await axios.get(`https://blog-server-three-inky.vercel.app/search/${pattern}`);
+        const response = await axiosPublic.get(`/search/${pattern}`);
         const resData = response.data;
         if (resData.length === 0) {
             setNotMatch(true);

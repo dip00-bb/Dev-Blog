@@ -3,7 +3,6 @@ import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from '../AuthContext/AuthContext';
 import { Link, useParams } from 'react-router';
 import { toast } from 'react-toastify';
-import axios from 'axios';
 import { ThemeContext } from '../ThemeContext/DarkLight';
 import CommentsSection from '../Component/BlogComments/CommentsSection';
 import { Sparkles, AlertCircle, Edit, Calendar, User } from 'lucide-react';
@@ -29,7 +28,7 @@ const BlogDetail = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://blog-server-three-inky.vercel.app/allblog/${id}?email=${user.email}`, {
+                const response = await axiosPublic.get(`/allblog/${id}?email=${user.email}`, {
                     headers: {
                         authorization: `Bearer ${user.accessToken}`
                     }
@@ -50,7 +49,7 @@ const BlogDetail = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://blog-server-three-inky.vercel.app/blog/comment/${id}`);
+                const response = await axiosPublic.get(`/blog/comment/${id}`);
                 setComment(response.data);
             } catch (error) {
                 setError(error.message);
@@ -64,12 +63,12 @@ const BlogDetail = () => {
     useEffect(() => {
         const checkPremiumStatus = async () => {
             if (!userId) return;
-            
+
             try {
                 const userStatus = await checkPremiumUser(userId);
                 setPremiumUser(userStatus);
             } catch (error) {
-                console.error("Failed to check premium status:", error);
+                toast.warn("Failed to check premium status:", error);
                 setPremiumUser(false);
             }
         };
@@ -101,8 +100,7 @@ const BlogDetail = () => {
                 setIsSummarized(true);
                 toast.success("Summary generated!");
             } catch (error) {
-                toast.error("Failed to generate summary");
-                console.error(error);
+                toast.warn("Failed to generate summary", error);
             } finally {
                 setIsLoadingSummary(false);
             }
@@ -113,7 +111,7 @@ const BlogDetail = () => {
 
     const handleComment = (e) => {
         e.preventDefault();
-        
+
         if (!user) {
             toast.error("Please sign in to comment");
             return;
@@ -140,12 +138,12 @@ const BlogDetail = () => {
             author: user.displayName
         };
 
-        axios.post('https://blog-server-three-inky.vercel.app/blog/comment', { commentorInfo })
+        axiosPublic.post('/blog/comment', { commentorInfo })
             .then(() => {
                 toast.success("Comment posted successfully!");
                 form.reset();
                 // Refresh comments
-                axios.get(`https://blog-server-three-inky.vercel.app/blog/comment/${id}`)
+                axiosPublic.get(`/blog/comment/${id}`)
                     .then(res => setComment(res.data));
             })
             .catch(() => {
@@ -172,9 +170,10 @@ const BlogDetail = () => {
             <title>{title || 'Blog Post'}</title>
 
             {/* Subscription Modal */}
-            <SubscriptionModal 
-                isOpen={showPremiumModal} 
-                onClose={() => setPremiumModal(false)} 
+            <SubscriptionModal
+                isOpen={showPremiumModal}
+                onClose={() => setPremiumModal(false)}
+                blogId={id}
             />
 
             {/* Hero Section */}

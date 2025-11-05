@@ -3,7 +3,8 @@ import { X, Lock, Crown, Check } from 'lucide-react';
 import { AuthContext } from '../../AuthContext/AuthContext';
 import axiosPublic from '../../axios/useAxiosPublic';
 
-const SubscriptionModal = ({ isOpen, onClose }) => {
+const SubscriptionModal = ({ isOpen, onClose,blogId }) => {
+    
     if (!isOpen) return null;
 
     const handleBackdropClick = (e) => {
@@ -18,9 +19,10 @@ const SubscriptionModal = ({ isOpen, onClose }) => {
             name: user.displayName,
             userId: user?.uid,
             amountPaid: "500",
+            redirectUrlId:blogId
         }
 
-        const response = await axiosPublic.post('https://blog-server-three-inky.vercel.app/payment/create-checkout-session', customerInformation);
+        const response = await axiosPublic.post('/payment/create-checkout-session', customerInformation);
         window.location.href = response.data.url;
     }
     return (
